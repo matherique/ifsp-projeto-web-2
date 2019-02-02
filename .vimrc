@@ -1,12 +1,13 @@
 set t_Co=256
 syntax on
-colorscheme minimalist
+colorscheme monokai"default minimalist
+"colorscheme default
 
 set encoding=utf8
-set background=dark
+"set background=dark
 set number
-set tabstop=2
-set shiftwidth=2
+set tabstop=3
+set shiftwidth=3
 set ai 
 set expandtab
 set hlsearch
@@ -20,6 +21,7 @@ highlight Comment ctermfg=green
 let g:sublimemonokai_term_italic = 1
 set laststatus=2
 set noshowmode
+set noswapfile
 
 
 filetype off
