@@ -21,8 +21,7 @@ set noswapfile
 
 filetype off
 
-
-" only if u had plugged install
+"only if u had plugged install
 call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'dikiaap/minimalist'
