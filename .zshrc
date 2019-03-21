@@ -9,8 +9,9 @@ export ZSH="/home/matherique/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="bira"
-
+#ZSH_THEME="bullet-train"
+ZSH_THEME="dracula"
+#ZSH_THEME="agnoster"
 #ZSH_THEME="af-magic"
 
 # Set list of themes to pick from when loading at random
@@ -101,3 +102,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="/home/matherique/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

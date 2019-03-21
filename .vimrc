@@ -1,15 +1,11 @@
-set t_Co=256
 syntax on
-colorscheme monokai"default minimalist
-"colorscheme default
-
+set t_Co=256
 set encoding=utf8
-"set background=dark
-set number
-set tabstop=3
-set shiftwidth=3
+set tabstop=2
+set shiftwidth=2
 set ai 
 set expandtab
+set number
 set hlsearch
 set incsearch
 set ruler
@@ -23,9 +19,10 @@ set laststatus=2
 set noshowmode
 set noswapfile
 
-
 filetype off
 
+
+" only if u had plugged install
 call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'dikiaap/minimalist'
