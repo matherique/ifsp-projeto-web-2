@@ -67,7 +67,7 @@ ZSH_THEME="dracula"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git, tmux
+  git tmux emoji node npm docker docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh

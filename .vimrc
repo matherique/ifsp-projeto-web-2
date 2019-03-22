@@ -1,4 +1,5 @@
 syntax on
+
 set t_Co=256
 set encoding=utf8
 set tabstop=2
@@ -21,8 +22,11 @@ set noswapfile
 
 filetype off
 
-"only if u had plugged install
+
+" only if u had plugged install
 call plug#begin('~/.vim/plugged')
+Plug 'dracula/vim', { 'as': 'dracula' }
+" color dracula
 Plug 'itchyny/lightline.vim'
 Plug 'dikiaap/minimalist'
 Plug 'pangloss/vim-javascript'
