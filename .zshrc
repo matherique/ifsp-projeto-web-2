@@ -107,6 +107,8 @@ export NVM_DIR="/home/matherique/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvma
 
 
+stty -ixon
+
 
 source ~/.bash_profile
 

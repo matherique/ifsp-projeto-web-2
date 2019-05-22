@@ -6,6 +6,8 @@ set encoding=utf8
 set tabstop=2
 set shiftwidth=2
 set ai 
+set relativenumber
+set ignorecase
 set expandtab
 set number
 set hlsearch
@@ -19,6 +21,14 @@ highlight Comment ctermfg=green
 set laststatus=2
 set noshowmode
 set noswapfile
+set splitbelow splitright
+
+
+autocmd BufWritePre * %s/\s+$//e
+
+vnoremap <C-c> <Esc>+y
+map <C-v> <Esc>+p
+vnoremap <C-c> <Esc>*y :let @+=@*<CR>
 
 filetype off
 
