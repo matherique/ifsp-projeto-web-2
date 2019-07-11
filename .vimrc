@@ -1,11 +1,11 @@
 syntax on
-colorscheme gruvbox
-set background=dark
+colorscheme monokai " gruvbox 
+set background=dark 
 set t_Co=256
 set encoding=utf8
 set tabstop=2
 set shiftwidth=2
-set ai 
+set ai
 set relativenumber
 set ignorecase
 set expandtab
@@ -23,12 +23,13 @@ set noshowmode
 set noswapfile
 set splitbelow splitright
 
-
 autocmd BufWritePre * %s/\s+$//e
+let g:solarized_termcolors=256
+
 
 vnoremap <C-c> <Esc>+y
-map <C-v> <Esc>+p
-vnoremap <C-c> <Esc>*y :let @+=@*<CR>
+map <C-v> <Esc>+P
+vnoremap <C-c> <Esc>*Y :let @+=@*<CR>
 
 filetype off
 
@@ -52,13 +53,15 @@ let g:lightline = { 'colorscheme': 'wombat', }
 " Javascript configuration
 let g:jsx_ext_required = 0
 
-
 " only if u had plugged install
 call plug#begin('~/.vim/plugged')
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-mucomplete'
 Plug 'itchyny/lightline.vim'
 Plug 'dikiaap/minimalist'
 Plug 'pangloss/vim-javascript'
+" Palug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
