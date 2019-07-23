@@ -1,55 +1,90 @@
-call plug#begin('~/.config/nvim/plugged')
-Plug 'itchyny/lightline.vim'
-Plug 'dikiaap/minimalist'
-Plug 'pangloss/vim-javascript'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'scrooloose/nerdcommenter'
-Plug 'sheerun/vim-polyglot'
-Plug 'tomasr/molokai'
-Plug 'machakann/vim-highlightedyank'
-Plug 'jiangmiao/auto-pairs'
+filetype plugin on
+filetype indent on
+" plugins
+call plug#begin("~/.config/nvim/plugged")
+Plug 'morhetz/gruvbox'                                  " tema 
+Plug 'itchyny/lightline.vim'                            " tema da statusline
+Plug 'dikiaap/minimalist'                               " outro tema
+Plug 'pangloss/vim-javascript'                          " syntax highlight de js
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " sistema de arquivos
+Plug 'scrooloose/nerdcommenter'                         " comentarios
+Plug 'sheerun/vim-polyglot'                             " varias syntex de varias linguagens  
+Plug 'tomasr/molokai'                                   " outro tema 
+Plug 'machakann/vim-highlightedyank'                    " highlight de texto copiado
 call plug#end()
-
+" leader key
 let mapleader="\<space>"
+" abrir config e atualizar
 nnoremap <leader>r :so ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vc :vsp ~/.config/nvim/init.vim<cr>
+
+" duplicar linha para baixo
+nmap <C-d> mzyyp`z
+
+" comentar
 nnoremap ; :call NERDComment(0,"toggle")<CR>
 vnoremap ; :call NERDComment(0,"toggle")<CR>
 
+" abre e fecha nerdtree
+map <silent><F5> :NERDTreeToggle<CR>
+
+" atalho para executar codigo no terminal 
+" golang
+if &filetype ==# 'go'
+  nnoremap <silent> <F4> :!go run %<CR>
+  noremap <silent> <F9> :!go run main.go<CR>
+endif
+" python
+if &filetype ==# 'python'
+  nnoremap <silent> <F4> :!python3 %<CR>
+endif
+
+" atalho para fold
+nnoremap <silent><C-f> zf
+vnorema <silent><C-f> zf
+nnoremap <silent><C-a> za
+vnorema <silent><C-a> za
+
+" atalho para remover coisas dentro de ({["'
+nnorema <silent>d( di(i
+nnorema <silent>d{ di{i
+nnorema <silent>d" di"i
+nnorema <silent>d' di'i
+nnorema <silent>d[ di[i
+
+
 syntax on
-colorscheme molokai "minimalist monokai  gruvbox
+colorscheme gruvbox 
+"colorscheme molokai 
+"colorscheme inimalist 
+"colorscheme monokai
 set background=dark 
 set t_Co=256
 set encoding=utf8
-set tabstop=2
+set tabstop=2 
 set shiftwidth=2
-set ai
-set cursorline
-set relativenumber
-set ignorecase
-set expandtab
-set number
-set hlsearch
+set autoindent                  " identar igual a linha anterior
+set cursorline                  " highlight a linha atual
+set relativenumber              " numeros relativos a posicao atual
+set ignorecase                  " ignorar camel case
+set expandtab 
+set number                      " ativar numeros 
+set nohlsearch                  " sem highlight a palavra pesquisada 
 set incsearch
 set showcmd
-set showmatch
-set paste
-set nowrap
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-set laststatus=2
+set nowrap                      " sem quebrar a linha 
+set laststatus=2                " se as outras janelas vao ter statusline
 set noshowmode
-set noswapfile
-set splitbelow splitright
-set inccommand=split
-set clipboard+=unnamedplus
-" open and close Tree
-map <silent> <F5> :NERDTreeToggle<CR>
-" golang
-nnoremap <silent> <F4> :!go run %<CR>
+set noswapfile                  " sem arquivo de swap
+set splitbelow splitright       " abrir vsplit na direita 
+set inccommand=split            " mostra o resultado da substituicao
+set clipboard+=unnamedplus      " compartilhar o clipboard do linux com o vim
+set termguicolors               " ativar true colors
+
+" linha dos numeros em darkgray
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 
-" NERDSTREE configuration
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'node_modules']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
@@ -59,5 +94,6 @@ let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 
 " tema do status line
 let g:lightline = { 'colorscheme': 'powerline', }
-
+" ativar italico 
+let g:gruvbox_italic=1
 

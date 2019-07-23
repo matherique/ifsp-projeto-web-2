@@ -115,3 +115,14 @@ stty -ixon
 
 source ~/.bash_profile
 
+
+### Added by Zplugin's installer
+source '/home/matherique/.zplugin/bin/zplugin.zsh'
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin's installer chunk
+#
+#
+zplugin light zdharma/fast-syntax-highlighting
+zplugin light zsh-users/zsh-autosuggestions
+zplugin light zsh-users/zsh-completions
