@@ -7,11 +7,10 @@ alias dc='docker-compose'
 alias db='mysql -uroot'
 alias pbcopy='xclip -selection clipboard'
 
-#if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-				#export TERM='xterm-256color'
-#else
-				#export TERM='xterm-color'
-#fi
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"
+
+export TERM='xterm-256color'
 
 #cargo rust configuration
 export PATH="$HOME/.cargo/bin:$PATH"

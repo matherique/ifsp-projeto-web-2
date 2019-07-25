@@ -70,7 +70,7 @@ ZSH_THEME="kayid"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git tmux emoji node npm docker docker-compose
+  git tmux emoji node npm docker docker-compose extract zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -124,5 +124,8 @@ autoload -Uz _zplugin
 #
 #
 zplugin light zdharma/fast-syntax-highlighting
-zplugin light zsh-users/zsh-autosuggestions
+#zplugin light zsh-users/zsh-autosuggestions
 zplugin light zsh-users/zsh-completions
+
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
+

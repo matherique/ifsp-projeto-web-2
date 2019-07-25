@@ -1,7 +1,10 @@
 filetype plugin on
 filetype indent on
-" plugins
+"plugins
 call plug#begin("~/.config/nvim/plugged")
+Plug 'vim-airline/vim-airline'
+Plug 'mustache/vim-mustache-handlebars'                 " highlight os pares de {([
+Plug 'sonph/onehalf',  {'rtp': 'vim/'}                  " tema
 Plug 'morhetz/gruvbox'                                  " tema 
 Plug 'itchyny/lightline.vim'                            " tema da statusline
 Plug 'dikiaap/minimalist'                               " outro tema
@@ -45,21 +48,28 @@ vnorema <silent><C-f> zf
 nnoremap <silent><C-a> za
 vnorema <silent><C-a> za
 
-" atalho para remover coisas dentro de ({["'
-nnorema <silent>d( di(i
-nnorema <silent>d{ di{i
-nnorema <silent>d" di"i
-nnorema <silent>d' di'i
-nnorema <silent>d[ di[i
+" atalho para remover coisas dentro de ({["'<
+nnorema <silent>d( di(
+nnorema <silent>d{ di{
+nnorema <silent>d" di"
+nnorema <silent>d' di'
+nnorema <silent>d[ di[
+nnorema <silent>d< di<
+
+nnorema <silent>yw yiw
 
 
 syntax on
-colorscheme gruvbox 
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
+"colorscheme gruvbox 
 "colorscheme molokai 
-"colorscheme inimalist 
+"colorscheme minimalist 
 "colorscheme monokai
 set background=dark 
 set t_Co=256
+set t_AB=^[[48;5;%dm
+set t_AF=^[[38;5;%dm
 set encoding=utf8
 set tabstop=2 
 set shiftwidth=2
@@ -80,10 +90,8 @@ set splitbelow splitright       " abrir vsplit na direita
 set inccommand=split            " mostra o resultado da substituicao
 set clipboard+=unnamedplus      " compartilhar o clipboard do linux com o vim
 set termguicolors               " ativar true colors
-
 " linha dos numeros em darkgray
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
 
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'node_modules']
