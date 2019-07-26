@@ -5,14 +5,14 @@ call plug#begin("~/.config/nvim/plugged")
 Plug 'vim-airline/vim-airline'
 Plug 'mustache/vim-mustache-handlebars'                 " highlight os pares de {([
 Plug 'sonph/onehalf',  {'rtp': 'vim/'}                  " tema
-Plug 'morhetz/gruvbox'                                  " tema 
-Plug 'itchyny/lightline.vim'                            " tema da statusline
-Plug 'dikiaap/minimalist'                               " outro tema
+"Plug 'morhetz/gruvbox'                                  " tema 
+"Plug 'itchyny/lightline.vim'                            " tema da statusline
+"Plug 'dikiaap/minimalist'                              " outro tema
 Plug 'pangloss/vim-javascript'                          " syntax highlight de js
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " sistema de arquivos
 Plug 'scrooloose/nerdcommenter'                         " comentarios
 Plug 'sheerun/vim-polyglot'                             " varias syntex de varias linguagens  
-Plug 'tomasr/molokai'                                   " outro tema 
+"Plug 'tomasr/molokai'                                   " outro tema 
 Plug 'machakann/vim-highlightedyank'                    " highlight de texto copiado
 call plug#end()
 " leader key
@@ -40,6 +40,7 @@ endif
 " python
 if &filetype ==# 'python'
   nnoremap <silent> <F4> :!python3 %<CR>
+  set shiftwidth=2
 endif
 
 " atalho para fold
