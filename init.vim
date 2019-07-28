@@ -91,11 +91,19 @@ set splitbelow splitright       " abrir vsplit na direita
 set inccommand=split            " mostra o resultado da substituicao
 set clipboard+=unnamedplus      " compartilhar o clipboard do linux com o vim
 set termguicolors               " ativar true colors
+
 " linha dos numeros em darkgray
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
+" fechar o nerdtree quando fechar a ultimo arquivo aberto
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"autocmd BufWritePre *.js Neoformat
+
+
+" configuracoes do nerdtree
 let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'node_modules']
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'node_modules', '.git']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
