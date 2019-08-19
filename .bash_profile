@@ -20,3 +20,6 @@ export GOPATH=$HOME/dev/go
 
 export HISTSIZE=100000
 
+export ANDROID_HOME=~/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools

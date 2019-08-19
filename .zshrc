@@ -8,15 +8,7 @@ export ZSH="/home/matherique/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-# ZSH_THEME="spaceship"
-# ZSH_THEME="bullet-train"
-# ZSH_THEME="dracula"
 ZSH_THEME="kayid"
-# ZSH_THEME="agnosterzak"
-# ZSH_THEME="agnoster"
-# ZSH_THEME="af-magic"
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -108,21 +100,13 @@ source $ZSH/oh-my-zsh.sh
 
 export NVM_DIR="/home/matherique/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvma
-
-
 stty -ixon
-
-
 source ~/.bash_profile
-
-
 ### Added by Zplugin's installer
 source '/home/matherique/.zplugin/bin/zplugin.zsh'
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin's installer chunk
-#
-#
 zplugin light zdharma/fast-syntax-highlighting
 #zplugin light zsh-users/zsh-autosuggestions
 zplugin light zsh-users/zsh-completions
