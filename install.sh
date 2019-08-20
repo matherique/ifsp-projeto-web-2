@@ -30,6 +30,16 @@ fi
 ln -v init.vim $NVIM_DIR
 
 echo -ne "\n"
+echo "==> Instalando gerenciador de plugin no neovim"
+curl -fLo $NVIM_DIR/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
+echo -ne "\n"
+echo "==> Instalando plugins no neovim"
+nvim +PlugInstall +qall
+
+echo -ne "\n"
 echo "==> Instalando Zsh "
 # install tmux
 sudo apt install zsh -y
@@ -66,6 +76,12 @@ echo -ne "\n"
 echo "==> Instalando Tmux "
 # install tmux
 sudo apt install tmux -y
+
+echo -ne "\n"
+echo "==> Instalando fzf "
+# install fuzzy finder
+sudo apt-get install fzf
+
 
 echo -ne "\n"
 echo "==> Instalando Configuração do tmux"
