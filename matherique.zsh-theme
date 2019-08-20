@@ -25,7 +25,7 @@
 
 
 local purple="$FG[099]"
-local orange="$FG[202]"
+local orange="$FG[196]"
 local yellow="$FG[214]"
 local cyan="$FG[117]"
 local green="%{$fg_bold[green]%}"
@@ -35,7 +35,7 @@ local magenta="%{$fg_bold[magenta]%}"
 local white="%{$fg_bold[white]%}"
 local reset="%{$reset_color%}"
 
-if [ "$USER" = "root" ]; then username_color=$red; else username_color=$orange; fi
+if [ "$USER" = "root" ]; then username_color=$orange; else username_color=$orange; fi
 
 hostname_color=$yellow
 
@@ -122,4 +122,4 @@ PROMPT+="$GIT_PROMPT"
 PROMPT+="$nl"
 PROMPT+='$white❯%{$reset_color%} '
 
-RPROMPT='${return_status}$(git_time_since_commit)%{$reset_color%}'
+# RPROMPT='${return_status}$(git_time_since_commit)%{$reset_color%}'

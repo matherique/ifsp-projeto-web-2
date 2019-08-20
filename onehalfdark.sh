@@ -2,7 +2,7 @@
 # One Half - Gnome Terminal color scheme install script
 # Based on https://github.com/chriskempson/base16-gnome-terminal
 
-[[ -z "$PROFILE_NAME" ]] && PROFILE_NAME="One Half Dark"
+[[ -z "$PROFILE_NAME" ]] && PROFILE_NAME="My theme"
 [[ -z "$PROFILE_SLUG" ]] && PROFILE_SLUG="one-half-dark"
 [[ -z "$DCONF" ]] && DCONF=dconf
 [[ -z "$UUIDGEN" ]] && UUIDGEN=uuidgen
@@ -59,9 +59,9 @@ if which "$DCONF" > /dev/null 2>&1; then
 
     # update profile values with theme options
     dset visible-name "'$PROFILE_NAME'"
-    dset palette "['#282c34', '#e06c75', '#98c379', '#e5c07b', '#61afef', '#c678dd', '#56b6c2', '#dcdfe4', '#282c34', '#e06c75', '#98c379', '#e5c07b', '#61afef', '#c678dd', '#56b6c2', '#dcdfe4']"
+    dset palette "['#131416', '#e06c75', '#98c379', '#e5c07b', '#61afef', '#c678dd', '#56b6c2', '#dcdfe4', '#131416', '#e06c75', '#98c379', '#e5c07b', '#61afef', '#c678dd', '#56b6c2', '#dcdfe4']"
 
-    dset background-color "'#282c34'"
+    dset background-color "'#131416'"
     dset foreground-color "'#dcdfe4'"
     dset bold-color "'#dcdfe4'"
     dset bold-color-same-as-fg "true"
@@ -109,8 +109,8 @@ glist_append() {
 glist_append string /apps/gnome-terminal/global/profile_list "$PROFILE_SLUG"
 
 gset string visible_name "$PROFILE_NAME"
-gset string palette "#282c34:#e06c75:#98c379:#e5c07b:#61afef:#c678dd:#56b6c2:#dcdfe4:#282c34:#e06c75:#98c379:#e5c07b:#61afef:#c678dd:#56b6c2:#dcdfe4"
-gset string background_color "#282c34"
+gset string palette "#131416:#e06c75:#98c379:#e5c07b:#61afef:#c678dd:#56b6c2:#dcdfe4:#131416:#e06c75:#98c379:#e5c07b:#61afef:#c678dd:#56b6c2:#dcdfe4"
+gset string background_color "#131416"
 gset string foreground_color "#dcdfe4"
 gset string bold_color "#dcdfe4"
 gset bool   bold_color_same_as_fg "true"
