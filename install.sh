@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 echo "==> Instalando Configuração do .bash_profile"
 # link do bash_profile
+
 BASH_PROFILE=/home/$USER/.bash_profile
 if [ -f "$BASH_PROFILE" ]; then
     rm -rf BASH_PROFILE
@@ -27,6 +28,7 @@ NVIM_DIR=/home/$USER/.config/nvim
 if [ -d "$NVIM_DIR" ]; then
     mkdir $NVIM_DIR
 fi
+
 ln -v init.vim $NVIM_DIR
 
 echo -ne "\n"
@@ -59,6 +61,10 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 
 echo -ne "\n"
 echo "==> Instalando theme oh-my-zsh"
+OHMYZSH=/home/$USER/.oh-my-zsh/themes/matherique.zsh-theme
+if [ -f "$OHMYZSH" ]; then
+    rm -rf $OHMYZSH
+fi
 ln -v matherique.zsh-theme /home/$USER/.oh-my-zsh/themes/
 
 echo -ne "\n"
@@ -81,7 +87,6 @@ echo -ne "\n"
 echo "==> Instalando fzf "
 # install fuzzy finder
 sudo apt-get install fzf
-
 
 echo -ne "\n"
 echo "==> Instalando Configuração do tmux"
