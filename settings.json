@@ -4,28 +4,51 @@
   // editor
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
-  "editor.fontSize": 16,
+  "editor.fontSize": 18,
   "editor.tabSize": 2,
   "editor.lineHeight": 24,
   "editor.fontWeight": "500",
   "editor.minimap.enabled": false,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   // window
   "window.titleBarStyle": "native",
   "window.menuBarVisibility": "toggle",
-  // git lens
-  "gitlens.codeLens.recentChange.enabled": false,
-  "gitlens.codeLens.authors.enabled": false,
-  "gitlens.codeLens.enabled": false,
   // javascript
-  "[javascript]": {
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,  
+  "[javascript]": { 
     "editor.formatOnSave": true
   },
   "[typescriptreact]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true
   },
   "[typescript]": {
-    "editor.formatOnSave": false
+    "{
+  // workbench
+  "workbench.iconTheme": "material-icon-theme",
+  // editor
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 18,
+  "editor.tabSize": 2,
+  "editor.lineHeight": 24,
+  "editor.fontWeight": "500",
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": false,
+  // window
+  "window.titleBarStyle": "native",
+  "window.menuBarVisibility": "toggle",
+  // javascript
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,  
+  "[javascript]": { 
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
   },
   "emmet.syntaxProfiles": {
     "javascript": "jsx",
@@ -35,20 +58,26 @@
     "javascript": "javascriptreact",
     "nunjucks": "html"
   },
+
+  "terminal.integrated.fontFamily": "Hack",
+  "terminal.integrated.fontSize": 16,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "workbench.startupEditor": "newUntitledFile",
-  // eslinst para 
-  "eslint.autoFixOnSave": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    {
-      "language": "typescript",
-      "autoFix": true
-    },
-    {
-      "language": "typescriptreact",
-      "autoFix": true
-    }
-  ]
+  "window.zoomLevel": 0,
+}editor.formatOnSave": true
+  },
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx",
+    "nunjucks": "html"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "nunjucks": "html"
+  },
+
+  "terminal.integrated.fontFamily": "Hack",
+  "terminal.integrated.fontSize": 16,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "workbench.startupEditor": "newUntitledFile",
+  "window.zoomLevel": 0,
 }

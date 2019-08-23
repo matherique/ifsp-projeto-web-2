@@ -1,0 +1,17 @@
+dbaeumer.vscode-eslint
+dsznajder.es7-react-js-snippets
+eamodio.gitlens
+esbenp.prettier-vscode
+jpoissonnier.vscode-styled-components
+kumar-harsh.graphql-for-vscode
+ms-azuretools.vscode-docker
+ms-vscode-remote.remote-ssh
+ms-vscode-remote.remote-ssh-edit
+ms-vscode-remote.remote-ssh-explorer
+ms-vscode.vscode-typescript-tslint-plugin
+ms-vsliveshare.vsliveshare
+naumovs.color-highlight
+PKief.material-icon-theme
+rocketseat.RocketseatReactJS
+rocketseat.RocketseatReactNative
+vscodevim.vim

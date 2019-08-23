@@ -5,7 +5,7 @@ call plug#begin("~/.config/nvim/plugged")
 Plug 'vim-airline/vim-airline'
 Plug 'mustache/vim-mustache-handlebars'                 " highlight os pares de {([
 Plug 'sonph/onehalf',  {'rtp': 'vim/'}                  " tema
-"Plug 'morhetz/gruvbox'                                  " tema 
+Plug 'morhetz/gruvbox'                                  " tema 
 "Plug 'itchyny/lightline.vim'                            " tema da statusline
 "Plug 'dikiaap/minimalist'                              " outro tema
 Plug 'pangloss/vim-javascript'                          " syntax highlight de js
@@ -61,16 +61,16 @@ nnorema <silent>yw yiw
 
 
 syntax on
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
-"colorscheme gruvbox 
+"colorscheme onehalfdark
+"let g:airline_theme='onehalfdark'
+colorscheme gruvbox 
 "colorscheme molokai 
 "colorscheme minimalist 
 "colorscheme monokai
 set background=dark 
-set t_Co=256
-set t_AB=^[[48;5;%dm
-set t_AF=^[[38;5;%dm
+"set t_Co=256
+"set t_AB=^[[48;5;%dm
+"set t_AF=^[[38;5;%dm
 set encoding=utf8
 set tabstop=2 
 set shiftwidth=2

@@ -10,7 +10,7 @@ alias pbcopy='xclip -selection clipboard'
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"
 
-export TERM='xterm-256color'
+#export TERM='xterm-256color'
 
 #cargo rust configuration
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -22,4 +22,5 @@ export HISTSIZE=100000
 
 export ANDROID_HOME=~/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH=$PATH:$ANDROID_HOME/platform-tools
