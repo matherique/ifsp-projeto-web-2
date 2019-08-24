@@ -23,48 +23,7 @@
     "editor.formatOnSave": true
   },
   "[typescript]": {
-    "{
-  // workbench
-  "workbench.iconTheme": "material-icon-theme",
-  // editor
-  "editor.fontFamily": "Fira Code",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 18,
-  "editor.tabSize": 2,
-  "editor.lineHeight": 24,
-  "editor.fontWeight": "500",
-  "editor.minimap.enabled": false,
-  "editor.formatOnSave": false,
-  // window
-  "window.titleBarStyle": "native",
-  "window.menuBarVisibility": "toggle",
-  // javascript
-  "prettier.eslintIntegration": true,
-  "prettier.tslintIntegration": true,  
-  "[javascript]": { 
     "editor.formatOnSave": true
-  },
-  "[typescriptreact]": {
-    "editor.formatOnSave": true
-  },
-  "[typescript]": {
-    "editor.formatOnSave": true
-  },
-  "emmet.syntaxProfiles": {
-    "javascript": "jsx",
-    "nunjucks": "html"
-  },
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-    "nunjucks": "html"
-  },
-
-  "terminal.integrated.fontFamily": "Hack",
-  "terminal.integrated.fontSize": 16,
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "workbench.startupEditor": "newUntitledFile",
-  "window.zoomLevel": 0,
-}editor.formatOnSave": true
   },
   "emmet.syntaxProfiles": {
     "javascript": "jsx",
