@@ -2,29 +2,43 @@
   // workbench
   "workbench.iconTheme": "material-icon-theme",
   // editor
-  "editor.fontFamily": "Fira Code",
+  "editor.fontFamily": "'Fira Code', 'Noto Emoji'",
   "editor.fontLigatures": true,
-  "editor.fontSize": 18,
+  "editor.fontSize": 16,
   "editor.tabSize": 2,
   "editor.lineHeight": 24,
   "editor.fontWeight": "500",
   "editor.minimap.enabled": false,
-  "editor.formatOnSave": false,
-  // window
-  "window.titleBarStyle": "native",
-  "window.menuBarVisibility": "toggle",
-  // javascript
-  "prettier.eslintIntegration": true,
-  "prettier.tslintIntegration": true,  
-  "[javascript]": { 
-    "editor.formatOnSave": true
+  "workbench.activityBar.visible": false, // hidde activitybar
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
   },
-  "[typescriptreact]": {
-    "editor.formatOnSave": true
+  "[javascriptreact]": {
+    "editor.formatOnSave": false
   },
   "[typescript]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   },
+  "[typescriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "window.menuBarVisibility": "toggle",
+  "prettier.eslintIntegration": true,
+  // javascript
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
   "emmet.syntaxProfiles": {
     "javascript": "jsx",
     "nunjucks": "html"
@@ -33,10 +47,22 @@
     "javascript": "javascriptreact",
     "nunjucks": "html"
   },
-
   "terminal.integrated.fontFamily": "Hack",
-  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontSize": 14,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "workbench.startupEditor": "newUntitledFile",
   "window.zoomLevel": 0,
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "workbench.colorTheme": "Night Owl",
+  "emojisense.languages": {
+    "javascript": true,
+    "typescript": true,
+    "markdown": true,
+    "bat": true,
+    "plaintext": true,
+    "json": true
+  },
+  "zenMode.hideLineNumbers": false
 }
