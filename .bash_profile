@@ -6,7 +6,7 @@ alias vim='nvim'
 alias dc='docker-compose'
 alias db='mysql -uroot'
 alias pbcopy='xclip -selection clipboard'
-
+alias git='hub'
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"
 
