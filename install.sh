@@ -100,5 +100,4 @@ ln -v .tmux.conf /home/$USER/
 echo -ne "\n"
 echo "==> Instalando da cor do terminal"
 chmod +x onehalfdark.sh
-
 ./onehalfdark.sh
