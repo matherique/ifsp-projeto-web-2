@@ -16,7 +16,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"
 export PATH="$HOME/.cargo/bin:$PATH"
 #gopath configuration
 export GOPATH=$HOME/dev/go
-
+export GOROOT=/usr/local/go
 
 export HISTSIZE=100000
 

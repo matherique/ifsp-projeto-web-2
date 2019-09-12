@@ -45,7 +45,7 @@ local hostname_command="%m"
 local current_dir="%~"
 
 #local username_output="$username_color$username_command$white at "
-#local hostname_output="$hostname_color$hostname_command$white in "
+local hostname_output="$hostname_color$hostname_command$white in "
 local current_dir_output="$hostname_color$current_dir$reset"
 local jobs_bg="${red}fg: %j$reset"
 
