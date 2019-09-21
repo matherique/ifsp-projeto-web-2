@@ -7,26 +7,25 @@
   "editor.fontSize": 16,
   "editor.tabSize": 2,
   "editor.lineHeight": 24,
+  "editor.rulers": [
+    100
+  ],
   "editor.fontWeight": "500",
   "editor.minimap.enabled": false,
-  "workbench.activityBar.visible": false, // hidde activitybar
+  "workbench.activityBar.visible": true, // hidde activitybar
   "editor.formatOnSave": true,
-  "[javascript]": {
-    "editor.formatOnSave": false
-  },
-  "[javascriptreact]": {
-    "editor.formatOnSave": false
-  },
-  "[typescript]": {
-    "editor.formatOnSave": false
-  },
-  "[typescriptreact]": {
-    "editor.formatOnSave": false
-  },
   "window.menuBarVisibility": "toggle",
   "prettier.eslintIntegration": true,
+  // "prettier.tabWidth": 2, 
+  // "prettier.useTabs": false,
+  // "prettier.semi": true,
+  // "prettier.singleQuote": true,
+  // "prettier.trailingComma": "all",
+  // "prettier.bracketSpacing": true,
+  // "prettier.jsxBracketSameLine": true,
+  // "prettier.proseWrap": "always",
   // javascript
-  "eslint.autoFixOnSave": true,
+  // "eslint.autoFixOnSave": true,
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -55,7 +54,6 @@
   "files.exclude": {
     "**/node_modules": true
   },
-  "workbench.colorTheme": "Night Owl",
   "emojisense.languages": {
     "javascript": true,
     "typescript": true,
@@ -64,5 +62,13 @@
     "plaintext": true,
     "json": true
   },
-  "zenMode.hideLineNumbers": false
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "explorer.confirmDelete": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.colorTheme": "Slack Theme Dark Mode",
 }
