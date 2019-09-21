@@ -2,23 +2,23 @@ filetype plugin on
 filetype indent on
 "plugins
 call plug#begin("~/.config/nvim/plugged")
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 Plug 'mustache/vim-mustache-handlebars'                 " highlight os pares de {([
-Plug 'sonph/onehalf',  {'rtp': 'vim/'}                  " tema
+"Plug 'sonph/onehalf',  {'rtp': 'vim/'}                  " tema
 Plug 'morhetz/gruvbox'                                  " tema 
-"Plug 'itchyny/lightline.vim'                            " tema da statusline
+Plug 'itchyny/lightline.vim'                            " tema da statusline
 "Plug 'dikiaap/minimalist'                              " outro tema
 Plug 'pangloss/vim-javascript'                          " syntax highlight de js
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " sistema de arquivos
 Plug 'scrooloose/nerdcommenter'                         " comentarios
 Plug 'sheerun/vim-polyglot'                             " varias syntex de varias linguagens  
-"Plug 'tomasr/molokai'                                   " outro tema 
+Plug 'tomasr/molokai'                                   " outro tema 
 Plug 'machakann/vim-highlightedyank'                    " highlight de texto copiado
 call plug#end()
 " leader key
 let mapleader="\<space>"
 " abrir config e atualizar
-nnoremap <leader>r :so ~/.config/nvim/init.vim<cr>
+"nnoremap <leader>r :so ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vc :vsp ~/.config/nvim/init.vim<cr>
 
 " duplicar linha para baixo
@@ -63,8 +63,8 @@ nnorema <silent>yw yiw
 syntax on
 "colorscheme onehalfdark
 "let g:airline_theme='onehalfdark'
-colorscheme gruvbox 
-"colorscheme molokai 
+"colorscheme gruvbox 
+colorscheme molokai 
 "colorscheme minimalist 
 "colorscheme monokai
 set background=dark 
