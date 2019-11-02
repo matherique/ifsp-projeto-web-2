@@ -2,7 +2,7 @@
   // workbench
   "workbench.iconTheme": "material-icon-theme",
   // editor
-  "editor.fontFamily": "'Fira Code', 'Noto Emoji'",
+  "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
   "editor.tabSize": 2,
@@ -10,11 +10,11 @@
   "editor.rulers": [
     100
   ],
-  "editor.fontWeight": "500",
+  "editor.fontWeight": "300",
   "editor.minimap.enabled": false,
   "workbench.activityBar.visible": true, // hidde activitybar
   "editor.formatOnSave": true,
-  "window.menuBarVisibility": "toggle",
+  // "window.menuBarVisibility": "toggle",
   "prettier.eslintIntegration": true,
   // "prettier.tabWidth": 2, 
   // "prettier.useTabs": false,
@@ -57,6 +57,7 @@
   "emojisense.languages": {
     "javascript": true,
     "typescript": true,
+    "typescriptreact": true,
     "markdown": true,
     "bat": true,
     "plaintext": true,
@@ -70,5 +71,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "terminal.integrated.shell.osx": "/bin/bash",
   "workbench.colorTheme": "Slack Theme Dark Mode",
 }
