@@ -11,16 +11,24 @@ set number
 set hlsearch
 set ruler
 set relativenumber
+set nobackup 
+set noswapfile
+set cursorline
 
+highlight CursorLine term=bold cterm=bold guibg=Grey40
 highlight Comment ctermfg=green
+
 let g:solarized_termcolors=256
 
+filetype on
 filetype plugin on
 filetype indent on
 "plugins
 call plug#begin("~/.config/nvim/plugged")
 Plug 'mustache/vim-mustache-handlebars'                 " highlight os pares de {([
-Plug 'itchyny/lightline.vim'                            " tema da statusline
+"Plug 'itchyny/lightline.vim'                            " tema da statusline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'pangloss/vim-javascript'                          " syntax highlight de js
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " sistema de arquivos
 Plug 'scrooloose/nerdcommenter'                         " comentarios
@@ -29,18 +37,15 @@ Plug 'machakann/vim-highlightedyank'                    " highlight de texto cop
 Plug 'altercation/vim-colors-solarized'                 " Theme solarized
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" assuming you're using vim-plug: https://github.com/junegunn/vim-plug
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'json', 'html'] }
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
-" enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" IMPORTANT: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
 
-" NOTE: you need to install completion sources to get completions. Check
-" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 
@@ -50,20 +55,28 @@ call plug#end()
 
 
 set rtp+=~/.fzf
-" tema do status line
-let g:lightline = { 'colorscheme': 'solarized', }
 
+" tema do status line
+let g:airline_theme='light'
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " comentar
 nnoremap ; :call NERDComment(0,"toggle")<CR>
 vnoremap ; :call NERDComment(0,"toggle")<CR>
 
-" arquivos
-nnoremap <c-p> :Files<CR>
+" search by files arquivos
+nnoremap <c-p> :Files<CR> 
+" new file 
 nnoremap <c-n> :e 
+" replace all 
+nnoremap <c-f> :%s/
 
 " abre e fecha nerdtree
 map <silent><F5> :NERDTreeToggle<CR>
+
+inoremap jj <ESC>
+
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 
