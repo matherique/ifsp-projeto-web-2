@@ -1,0 +1,7 @@
+[user]
+	email = matherique@gmail.com
+	name = Matheus Henrique
+
+[hub]
+  username = matherique
+  protocol = ssh 
