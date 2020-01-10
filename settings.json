@@ -1,43 +1,18 @@
 {
   // workbench
-  "workbench.iconTheme": "material-icon-theme",
-  // editor
-  "editor.fontFamily": "Fira Code",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 16,
-  "editor.tabSize": 2,
-  "editor.lineHeight": 24,
-  "editor.rulers": [
-    100
-  ],
-  "editor.fontWeight": "300",
-  "editor.minimap.enabled": false,
   "workbench.activityBar.visible": true, // hidde activitybar
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Night Owl (No Italics)",
+  "workbench.startupEditor": "none",
+  // editor
+  "editor.fontFamily": "Dank Mono",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 15,
+  "editor.tabSize": 2,
+  "editor.lineHeight": 21,
+  "editor.rulers": [80],
+  "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
-  // "window.menuBarVisibility": "toggle",
-  "prettier.eslintIntegration": true,
-  // "prettier.tabWidth": 2, 
-  // "prettier.useTabs": false,
-  // "prettier.semi": true,
-  // "prettier.singleQuote": true,
-  // "prettier.trailingComma": "all",
-  // "prettier.bracketSpacing": true,
-  // "prettier.jsxBracketSameLine": true,
-  // "prettier.proseWrap": "always",
-  // javascript
-  // "eslint.autoFixOnSave": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    {
-      "language": "typescript",
-      "autoFix": true
-    },
-    {
-      "language": "typescriptreact",
-      "autoFix": true
-    }
-  ],
   "emmet.syntaxProfiles": {
     "javascript": "jsx",
     "nunjucks": "html"
@@ -46,31 +21,22 @@
     "javascript": "javascriptreact",
     "nunjucks": "html"
   },
-  "terminal.integrated.fontFamily": "Hack",
+  "terminal.integrated.fontFamily": "Dank Mono",
   "terminal.integrated.fontSize": 14,
+  "terminal.integrated.shell.osx": "/bin/bash",
+  "explorer.confirmDelete": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "workbench.startupEditor": "newUntitledFile",
   "window.zoomLevel": 0,
   "files.exclude": {
     "**/node_modules": true
   },
-  "emojisense.languages": {
-    "javascript": true,
-    "typescript": true,
-    "typescriptreact": true,
-    "markdown": true,
-    "bat": true,
-    "plaintext": true,
-    "json": true
-  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "explorer.confirmDelete": false,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "terminal.integrated.shell.osx": "/bin/bash",
-  "workbench.colorTheme": "Slack Theme Dark Mode",
+  "go.formatTool": "goimports",
+  "go.useLanguageServer": true
 }
