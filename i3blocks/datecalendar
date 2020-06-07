@@ -1,0 +1,6 @@
+
+case $BLOCK_BUTTON in
+1) zenity --calendar
+esac
+
+date '+%A %d de %B de %Y'

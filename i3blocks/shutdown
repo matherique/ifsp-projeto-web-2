@@ -1,0 +1,6 @@
+#!/bin/sh
+echo "exit "
+case $BLOCK_BUTTON in
+  1) i3-nagbar -t warning -m 'Deseja desligar o computador?' -B 'Sim' 'sudo shutdown'
+esac
+

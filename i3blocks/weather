@@ -1,0 +1,33 @@
+#!/bin/sh
+# i3block for displaying the current temperature, humidity and precipitation, if wttr.in i unavailable then WEATHER UNAVAILABLE will be displayed
+
+weather=$(curl -s https://wttr.in/?format=%l:+%c+%t+%m)
+
+#if [ $(echo "$weather" | grep -E "(Unknown|curl|HTML)" | wc -l) -gt 0 ]; then
+#	echo "WEATHER UNAVAILABLE"
+#else
+#	# echo "$weather" | awk '{print $1}' | sed 's/\+//g' | sed 's/\°C//g'
+#	resp=$(echo "$weather" | awk '{print $1}' | sed 's/\+//g' | sed 's/\°C//g')
+#	#resp=31
+#	if [ $resp -gt 30 ]; then 
+#		echo "☀️  $resp°C"
+#	else
+#		if [ $resp -gt 25 ]; then
+#			echo "🌤️  $resp°C"
+#		else 
+#			if [ $resp -gt 20 ]; then
+#				echo "☁️  $resp°C"
+#			else
+#				echo "❄️  $resp°C"
+#			fi
+#		fi
+#	fi
+#fi
+
+if [ $(echo "$weather" | grep -E "(Unknown|curl|HTML)" | wc -l) -gt 0 ]; then
+	echo "WEATHER UNAVAILABLE"
+else
+	echo $(echo "📍 $weather" | sed 's/+//g')
+fi
+
+

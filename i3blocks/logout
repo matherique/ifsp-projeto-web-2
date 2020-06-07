@@ -1,0 +1,6 @@
+#!/bin/sh
+echo "🚪"
+case $BLOCK_BUTTON in
+  1) i3-nagbar -t warning -m 'Deseja sair da sessão?' -B 'Sim' 'i3-msg exit'
+esac
+

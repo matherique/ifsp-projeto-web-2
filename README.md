@@ -13,3 +13,4 @@ Use `install.sh` to install all configurations
   - [zplugin](https://github.com/zdharma/zplugin)
 - [tmux](https://github.com/tmux/tmux)
 - [fzf](https://github.com/junegunn/fzf)
+- [Gogh](https://github.com/Mayccoll/Gogh) Cor terminal
