@@ -22,6 +22,14 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install','for': ['javascript', 'type
 Plug 'neoclide/coc.nvim', {'branch': 'release'} 
 call plug#end()
 
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_invert_selection= '0'
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+ 
 syntax on
 set background=dark
 colorscheme gruvbox
@@ -42,12 +50,12 @@ set undofile
 set incsearch
 set colorcolumn=80
 set nohlsearch
+set termguicolors 
 let g:go_fmt_command = "goimports"
 
 
 highlight CursorLine term=bold cterm=bold guibg=Grey40
 
-let g:gruvbox_termcolors=16
 
 let mapleader = " "
 
@@ -122,4 +130,5 @@ command! -nargs=0 Comment :call NERDComment(0,"toggle")
 
 autocmd BufEnter *.tsx set filetype=typescriptreact
 autocmd BufEnter *.jsx set filetype=javascriptreact
+autocmd BufEnter .*rc set filetype=json
 
