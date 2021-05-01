@@ -28,11 +28,6 @@ fi
 
 export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
 
-
-alias i3c="vim ~/.config/i3/config"
-alias i3bc="vim ~/.config/i3/i3blocks.conf"
-
-
 # this make ctrl+tab works in terminal
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ next-tab '<Primary>Tab'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ prev-tab '<Primary><Shift>Tab'
