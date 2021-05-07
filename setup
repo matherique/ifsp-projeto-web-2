@@ -6,7 +6,7 @@ ln --relative --symbolic gitconfig $HOME/.gitconfig
 ln --relative --symbolic bashrc $HOME/.bashrc
 ln --relative --symbolic bash_profile $HOME/.bash_profile
 ln --relative --symbolic profile $HOME/.profile
-ln --relative --symbolic tmux.config $HOME/.tmux.config
+ln --relative --symbolic tmux.config $HOME/.tmux.conf
 
 if [ ! -d "$HOME/.config/alacritty" ]; then mkdir $HOME/.config/alacritty; fi
 ln --relative --symbolic alacritty.yml $HOME/.config/alacritty/alacritty.yml
