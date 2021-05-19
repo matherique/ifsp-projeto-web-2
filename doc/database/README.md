@@ -1,5 +1,9 @@
 # Banco de dados
 
+
+## Diagrama
+![modelagem do banco](diagrama.png)
+
 ### country
 - id              int
 - name            varchar(100)
@@ -41,6 +45,4 @@
 - created_at    timestamps
 - updated_at    timestamps
 
-
-![modelagem do banco](/diagrama.png)
 
