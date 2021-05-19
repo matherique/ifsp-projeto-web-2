@@ -41,3 +41,6 @@
 - created_at    timestamps
 - updated_at    timestamps
 
+
+![modelagem do banco](/diagrama.png)
+
