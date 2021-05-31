@@ -29,7 +29,7 @@ font:
 #family: "Ubuntu Mono Nerd Font"
 #  size: 70.0
 
-  size: 17 # 80 width on Dell Latitude 5411
+  size: 13 # 80 width on Dell Latitude 5411
   offset:
     x: 0
     y: 0 
@@ -91,7 +91,7 @@ bell:
   color: '0xffffff'
   duration: 0
 
-background_opacity: 0.76
+background_opacity: 0.85
 
 mouse:
   double_click: { threshold: 300 }
