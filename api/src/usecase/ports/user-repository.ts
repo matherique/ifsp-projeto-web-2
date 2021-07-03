@@ -1,7 +1,7 @@
-import { User } from "../../domain";
+import { UserData } from "../../domain/user";
 
 export interface UserRepository {
-  findOne: (id: string) => Promise<User>;
-  findAll: () => Promise<User[]>;
-  create: (data: User) => Promise<User>;
+  create: (data: UserData) => Promise<UserData>;
+  findByEmail: (email: string) => Promise<UserData>
+  update: (id: string, data: Partial<UserData>) => Promise<UserData>
 }
