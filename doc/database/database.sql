@@ -36,10 +36,3 @@ create table if not exits indicator_data(
   created_at timestamp default CURRENT_TIMESTAMP,
   updated_at timestamp default CURRENT_TIMESTAMP
 );
-
-create table if not exits log (
-  user_id int not null references user(id),
-  indicator_id int not null references indicator(id),
-  created_at timestamp default CURRENT_TIMESTAMP,
-  updated_at timestamp default CURRENT_TIMESTAMP
-);
