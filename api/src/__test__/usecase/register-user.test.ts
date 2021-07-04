@@ -1,4 +1,5 @@
 import { User } from "../../domain/user";
+import { InvalidEmail } from "../../domain/user/errors/invalid-email";
 import { InMemoryUserRepository } from "../../repository/InMemory";
 import { RegisterUser } from "../../usecase/register-user/register-user";
 
@@ -12,4 +13,5 @@ describe('RegisterUser Use Case', () => {
     
     expect(newUserData.email).toEqual(userData.email)
   })
+
 })

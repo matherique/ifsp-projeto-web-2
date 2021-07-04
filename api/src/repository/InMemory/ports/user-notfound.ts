@@ -4,4 +4,3 @@ export class UserNotFound extends Error {
     this.name = 'UserNotFound'
   }
 }
-    
