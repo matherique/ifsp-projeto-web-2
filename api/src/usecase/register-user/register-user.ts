@@ -1,14 +1,23 @@
 import { UserRepository } from "../ports";
-import { User, UserData } from "../../domain/user"
-import { InvalidUserData } from "./errors/invalid-user";
+import { User } from "../../domain/user";
+import { RegisterUserResponse } from "./register-user-response";
+import { RegisterUserData } from "./register-user-data";
 
-export class RegisterUser {
+export interface RegisterUserUseCase {
+  handle: (data: RegisterUserData) => Promise<RegisterUserResponse>;
+}
+
+export class RegisterUser implements RegisterUserUseCase {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async handle(data: UserData): Promise<UserData> {
-    const user = User.create(data.name, data.email, data.username, data.password)
+  async handle(data: RegisterUserData): Promise<RegisterUserResponse> {
+    const user = User.create(
+      data.name,
+      data.email,
+      data.username,
+      data.password
+    );
 
-    if (!user.validate()) throw new InvalidUserData()
     const newUser = await this.userRepository.create(user);
 
     return newUser;

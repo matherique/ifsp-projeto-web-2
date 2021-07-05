@@ -1,8 +1,15 @@
-import { UserData } from "../../domain/user";
 import { UserRepository } from "../../usecase/ports";
 
+type UserData = {
+  id: string;
+  name: string;
+  username: string;
+  password: string;
+  email: string;
+};
+
 export class InMemoryUserRepository implements UserRepository {
-  private user: UserData[] = []
+  private user: UserData[] = [];
 
   async create(data: UserData): Promise<UserData> {
     this.user.push(data);
@@ -10,21 +17,24 @@ export class InMemoryUserRepository implements UserRepository {
   }
 
   async findByEmail(email: string): Promise<UserData> {
-    const user = this.user.find(u => u.email.toLocaleLowerCase() === email.toLocaleLowerCase())
+    const user = this.user.find(
+      (u) => u.email.toLocaleLowerCase() === email.toLocaleLowerCase()
+    );
 
     return user;
   }
 
   async update(id: string, data: Partial<UserData>): Promise<UserData> {
-    const currentUserList = [...this.user]
-    this.user = currentUserList.map(u => {
+    const currentUserList = [...this.user];
+    this.user = currentUserList.map((u) => {
       if (u.id === id) {
-        u = {...u, ...data}
+        u = { ...u, ...data };
       }
 
       return u;
-    })
-    
-    return this.user.find(u => u.id === id)
+    });
+
+    return this.user.find((u) => u.id === id);
   }
 }
+
