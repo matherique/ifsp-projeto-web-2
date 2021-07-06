@@ -6,12 +6,12 @@ import {
   OneToOne,
   UpdateDateColumn,
 } from "typeorm";
-import { CountryModel } from "./country-model";
-import { IndicatorModel } from "./indicator-model";
+import { CountrySchema } from "./country-schema";
+import { IndicatorModel } from "./indicator-schema";
 
 @Entity({ name: "indicator_data" })
-export class IndicatorDataModel {
-  @OneToOne(() => CountryModel)
+export class IndicatorDataSchema {
+  @OneToOne(() => CountrySchema)
   @JoinColumn({ name: "country_id" })
   public country_id: number;
 

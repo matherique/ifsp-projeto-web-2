@@ -6,22 +6,19 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity({ name: "user" })
-export class UserModel {
+@Entity({ name: "country" })
+export class CountrySchema {
   @PrimaryGeneratedColumn("uuid")
   public id: number;
 
   @Column({ type: "varchar", length: 100 })
   public name: string;
 
-  @Column({ type: "varchar", length: 100 })
-  public email: string;
+  @Column({ type: "varchar", length: 3 })
+  public code: string;
 
   @Column({ type: "varchar", length: 100 })
-  public username: string;
-
-  @Column({ type: "varchar", length: 64 })
-  public password: string;
+  public region: string;
 
   @CreateDateColumn()
   public created_at: Date;

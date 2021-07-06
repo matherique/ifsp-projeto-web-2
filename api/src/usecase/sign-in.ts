@@ -1,9 +1,6 @@
-import { EncryptService, TokenService, UserRepository } from "../ports";
-import { InvalidEmailOrPassword } from "./errors/invalid-email";
-
-export interface SignInUseCase {
-  handle: (email: string, password: string) => Promise<string>;
-}
+import { EncryptService, TokenService, UserRepository } from "./ports";
+import { InvalidEmailOrPassword } from "./errors/invalid-email-or-password";
+import { SignInResponse, SignInUseCase } from "../domain/usecase/sign-in";
 
 export class SignIn implements SignInUseCase {
   constructor(
@@ -12,7 +9,7 @@ export class SignIn implements SignInUseCase {
     private readonly tokenService: TokenService
   ) {}
 
-  async handle(email: string, password: string): Promise<string> {
+  async handle(email: string, password: string): Promise<SignInResponse> {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {

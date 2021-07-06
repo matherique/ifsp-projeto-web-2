@@ -1,6 +1,8 @@
-import { UserModel } from "../../entity/user-model";
+import { User } from "../../domain/models";
 
 export interface UserRepository {
-  create: (data: any) => Promise<UserModel>;
-  findByEmail: (email: string) => Promise<UserModel | null>;
+  create(data: User): Promise<User>;
+  findByEmail(email: string): Promise<User>;
+  findById(id: string): Promise<User>;
+  update(id: string, userData: User): Promise<User>;
 }
