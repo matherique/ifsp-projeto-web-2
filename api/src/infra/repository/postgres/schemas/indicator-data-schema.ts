@@ -13,7 +13,7 @@ import { IndicatorModel } from "./indicator-schema";
 export class IndicatorDataSchema {
   @OneToOne(() => CountrySchema)
   @JoinColumn({ name: "country_id" })
-  public country_id: number;
+  public country_id: string;
 
   @OneToOne(() => IndicatorModel)
   @JoinColumn({ name: "indicator_id" })

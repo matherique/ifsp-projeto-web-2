@@ -9,7 +9,7 @@ import {
 @Entity({ name: "user" })
 export class UserSchema {
   @PrimaryGeneratedColumn("uuid")
-  public id: number;
+  public id: string;
 
   @Column({ type: "varchar", length: 100 })
   public name: string;

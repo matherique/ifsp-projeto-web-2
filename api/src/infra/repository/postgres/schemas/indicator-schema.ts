@@ -9,7 +9,7 @@ import {
 @Entity({ name: "indicator" })
 export class IndicatorModel {
   @PrimaryGeneratedColumn("uuid")
-  public id: number;
+  public id: string;
 
   @Column({ type: "varchar", length: 3 })
   public code: string;
