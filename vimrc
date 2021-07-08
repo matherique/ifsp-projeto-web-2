@@ -22,8 +22,8 @@ Plug 'sheerun/vim-polyglot'                             " varias syntex de varia
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " pt-br check
 Plug 'mateusbraga/vim-spell-pt-br'
+Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
-
 
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -31,6 +31,7 @@ if exists('+termguicolors')
 endif
  
 syntax on
+colorscheme gruvbox
 set background=dark
 set t_Co=256
 set tabstop=2 softtabstop=2
@@ -56,6 +57,11 @@ set spelllang=pt_br
 
 
 highlight CursorLine term=bold cterm=bold guibg=Grey40
+
+" Workaround for creating transparent bg
+autocmd SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
+            \ |    highlight LineNr     ctermbg=NONE guibg=NONE
+            \ |    highlight SignColumn ctermbg=NONE guibg=NONE
 
 
 let mapleader = " "
