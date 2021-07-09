@@ -1,5 +1,5 @@
-import { User } from "../../../domain/models";
-import { UserRepository } from "../../../usecase/ports";
+import { User } from "../../domain/models";
+import { UserRepository } from "../../usecase/ports";
 
 type UserData = {
   id: string;

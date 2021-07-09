@@ -1,5 +1,4 @@
 import { EncryptService, UserRepository } from "./ports";
-import { User } from "../domain/models";
 import { RegisterUserParams, RegisterUserResponse, RegisterUserUseCase } from "../domain/usecase";
 
 export class RegisterUser implements RegisterUserUseCase {
@@ -13,7 +12,7 @@ export class RegisterUser implements RegisterUserUseCase {
 
     const hashedPassword = await this.encryptService.hash(password)
 
-    const user = User.create(name, email, hashedPassword);
+    const user = { name, email, password: hashedPassword };
 
     const newUser = await this.userRepository.create(user);
 
@@ -21,4 +20,4 @@ export class RegisterUser implements RegisterUserUseCase {
 
     return true;
   }
-}
+} 

@@ -8,7 +8,7 @@ import {
 
 @Entity({ name: "user" })
 export class UserSchema {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn()
   public id: string;
 
   @Column({ type: "varchar", length: 100 })
@@ -16,9 +16,6 @@ export class UserSchema {
 
   @Column({ type: "varchar", length: 100 })
   public email: string;
-
-  @Column({ type: "varchar", length: 100 })
-  public username: string;
 
   @Column({ type: "varchar", length: 64 })
   public password: string;

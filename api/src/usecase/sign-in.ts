@@ -13,7 +13,7 @@ export class SignIn implements SignInUseCase {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
-      throw new InvalidEmailOrPassword();
+      return null
     }
 
     const isValidPassword = await this.encryptService.compare(
@@ -22,7 +22,7 @@ export class SignIn implements SignInUseCase {
     );
 
     if (!isValidPassword) {
-      throw new InvalidEmailOrPassword();
+      return null
     }
 
     const currentDate = new Date();

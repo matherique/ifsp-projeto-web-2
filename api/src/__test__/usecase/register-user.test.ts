@@ -1,5 +1,5 @@
 import { User } from "../../domain/models";
-import { InMemoryUserRepository } from "../../infra/repository/in-memory";
+import { InMemoryUserRepository } from "../../repository/in-memory";
 import { RegisterUser } from "../../usecase/register-user";
 
 describe("RegisterUser Use Case", () => {
