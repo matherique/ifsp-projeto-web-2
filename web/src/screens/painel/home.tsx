@@ -13,7 +13,7 @@ const List = styled.div`
 
   & > h2 {
     border-bottom: 2px solid var(--black2);
-    width: 90%;
+    width: 50%;
   }
 `
 
