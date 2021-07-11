@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import Button from '@/components/button'
 import Input from '@/components/input'
 import Logo from '@/components/logo'
+import Link from 'next/link'
 
 const Container = styled.div`
   background-color: var(--dark-white);
@@ -41,6 +42,20 @@ const Fields = styled.div`
 const Buttons = styled.div`
   display: flex;
   flex-direction: column;
+
+  & > p {
+    color: var(--gray);
+  }
+
+  & > p > a {
+    color: var(--black2);
+    text-decoration: none;
+  }
+
+  & > p > a:hover {
+    color: var(--black2);
+    text-decoration: underline;
+  }
 `
 
 const ErrorMessage = styled.div`
@@ -59,10 +74,6 @@ export default function LoginPage() {
   React.useEffect(() => {
     emailRef.current?.focus()
   }, [])
-
-  function handleRegisterButton() {
-    router.push('/cadastrar')
-  }
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
@@ -93,7 +104,12 @@ export default function LoginPage() {
         {error ? <ErrorMessage>Erro! </ErrorMessage> : null}
         <Buttons>
           <Button>Entrar</Button>
-          <Button onClick={() => handleRegisterButton()}>Cadastrar</Button>
+          <p>
+            não possui conta?{' '}
+            <Link href="/cadastrar">
+              <a>cadastre-se</a>
+            </Link>
+          </p>
         </Buttons>
       </LoginForm>
     </Container>
