@@ -1,9 +1,6 @@
+import * as React from 'react'
+import LoginPage from '@/screens/login'
+
 export default function Home() {
-  return (
-    <div>
-        <h1>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-    </div>
-  )
+  return <LoginPage />
 }
