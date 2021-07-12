@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import Layout from '@/components/layout'
 import Checkbox from '@/components/checkbox'
+import { Slider, withStyles } from '@material-ui/core'
 
 const Container = styled.div`
   display: flex;
@@ -36,6 +37,12 @@ const YearSelector = styled.div`
 `
 
 export default function Home() {
+  const [value, setValue] = React.useState<number[]>([1960, 2020])
+
+  const handleChange = (newValue: number[]) => {
+    setValue(newValue)
+  }
+
   return (
     <Layout>
       <Container>
@@ -52,6 +59,15 @@ export default function Home() {
         <Main>
           <YearSelector>
             <h1>Anos</h1>
+
+            <Slider
+              value={value}
+              onChange={(_, newValue) => handleChange(newValue as number[])}
+              valueLabelDisplay="on"
+              min={1960}
+              step={1}
+              max={2020}
+            />
           </YearSelector>
         </Main>
         <List>
