@@ -39,7 +39,7 @@ const YearSelector = styled.div`
 export default function Home() {
   const [value, setValue] = React.useState<number[]>([1960, 2020])
 
-  const handleChange = (newValue: number[]) => {
+  function handleChange(newValue: number[]) {
     setValue(newValue)
   }
 
@@ -67,6 +67,7 @@ export default function Home() {
               min={1960}
               step={1}
               max={2020}
+              onChangeCommitted={() => console.log(value)}
             />
           </YearSelector>
         </Main>

@@ -97,13 +97,6 @@ export default function Layout({ children }: LayoutProps) {
               </Link>
             </li>
             <li>
-              <Link href="/painel/relatorio" passHref>
-                <StyledLink active={router.pathname === '/painel/relatorio'}>
-                  relatório
-                </StyledLink>
-              </Link>
-            </li>
-            <li>
               <Link href="/painel/usuario" passHref>
                 <StyledLink active={router.pathname === '/painel/usuario'}>
                   editar dados
