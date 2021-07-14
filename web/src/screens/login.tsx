@@ -6,6 +6,7 @@ import Button from '@/components/button'
 import Input from '@/components/input'
 import Logo from '@/components/logo'
 import Link from 'next/link'
+import { useAuth } from '@/contexts/auth-context'
 
 const Container = styled.div`
   background-color: var(--dark-white);
@@ -63,11 +64,21 @@ const ErrorMessage = styled.div`
   font-weight: 600;
 `
 
+type FieldsErrorType = {
+  email: boolean
+  password: boolean
+}
 export default function LoginPage() {
   const router = useRouter()
+  const { signIn } = useAuth()
+
   const [email, setEmail] = React.useState<string>('')
   const [password, setPassword] = React.useState<string>('')
   const [error, setError] = React.useState<boolean>()
+  const [fieldsError, setFieldsError] = React.useState<FieldsErrorType>({
+    email: false,
+    password: false
+  })
 
   const emailRef = React.useRef<HTMLInputElement>(null)
 
@@ -78,7 +89,23 @@ export default function LoginPage() {
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
 
-    router.push('/painel')
+    if (!email) {
+      setFieldsError(e => ({ ...e, email: true }))
+      return
+    } else if (!password) {
+      setFieldsError(e => ({ ...e, password: true }))
+      return
+    } else {
+      setFieldsError({ email: false, password: false })
+    }
+
+    signIn({ email, password })
+      .then(_ => {
+        router.push('/painel')
+      })
+      .catch(_ => {
+        setError(true)
+      })
   }
 
   return (
@@ -88,6 +115,8 @@ export default function LoginPage() {
         <Title>Logar</Title>
         <Fields>
           <Input
+            error={fieldsError.email}
+            errorMessage="informe o email"
             type="text"
             value={email}
             onChange={event => setEmail(event.target.value)}
@@ -95,13 +124,15 @@ export default function LoginPage() {
             ref={emailRef}
           />
           <Input
+            error={fieldsError.password}
+            errorMessage="informe a senha"
             type="password"
             value={password}
             onChange={event => setPassword(event.target.value)}
             placeholder="senha"
           />
         </Fields>
-        {error ? <ErrorMessage>Erro! </ErrorMessage> : null}
+        {error ? <ErrorMessage>usuário ou senha inválidos</ErrorMessage> : null}
         <Buttons>
           <Button>Entrar</Button>
           <p>

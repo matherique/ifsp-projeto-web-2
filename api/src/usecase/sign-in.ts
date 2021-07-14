@@ -1,6 +1,5 @@
-import { EncryptService, TokenService, UserRepository } from "./ports";
-import { InvalidEmailOrPassword } from "./errors/invalid-email-or-password";
-import { SignInResponse, SignInUseCase } from "../domain/usecase/sign-in";
+import { EncryptService, TokenService, UserRepository } from './ports'
+import { SignInResponse, SignInUseCase } from '../domain/usecase/sign-in'
 
 export class SignIn implements SignInUseCase {
   constructor(
@@ -10,7 +9,7 @@ export class SignIn implements SignInUseCase {
   ) {}
 
   async handle(email: string, password: string): Promise<SignInResponse> {
-    const user = await this.userRepository.findByEmail(email);
+    const user = await this.userRepository.findByEmail(email)
 
     if (!user) {
       return null
@@ -19,16 +18,20 @@ export class SignIn implements SignInUseCase {
     const isValidPassword = await this.encryptService.compare(
       password,
       user.password
-    );
+    )
 
     if (!isValidPassword) {
       return null
     }
 
-    const currentDate = new Date();
-    const expireIn = currentDate.setUTCHours(currentDate.getHours() + 8);
-    const token = await this.tokenService.encode({ id: user.id }, expireIn);
+    const currentDate = new Date()
+    const expireIn = currentDate.setUTCHours(currentDate.getHours() + 8)
 
-    return token;
+    const token = await this.tokenService.encode({ id: user.id }, expireIn)
+
+    return {
+      token,
+      user
+    }
   }
 }

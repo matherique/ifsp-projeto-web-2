@@ -1,8 +1,10 @@
-import express from "express";
-import setupRoutes from "./routes";
+import express from 'express'
+import setupMiddleware from './middleware'
+import setupRoutes from './routes'
 
-const app = express();
+const app = express()
 app.use(express.json())
 setupRoutes(app)
+setupMiddleware(app)
 
-export default app;
+export default app

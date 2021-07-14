@@ -2,11 +2,11 @@ import * as React from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 
-import configIcon from '../../public/config.png'
 import signOutIcon from '../../public/sign-out.svg'
 import Logo from '@/components/logo'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useAuth } from '@/contexts/auth-context'
 
 const Container = styled.div`
   display: flex;
@@ -77,10 +77,11 @@ type LayoutProps = {
 }
 
 export default function Layout({ children }: LayoutProps) {
+  const { signOut } = useAuth()
   const router = useRouter()
 
   function handleSignOut() {
-    router.push('/')
+    signOut()
   }
 
   return (

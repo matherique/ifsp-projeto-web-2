@@ -1,9 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import Layout from '@/components/layout'
 import Checkbox from '@/components/checkbox'
-import { Slider, withStyles } from '@material-ui/core'
+import { Slider } from '@material-ui/core'
 
 const Container = styled.div`
   display: flex;
@@ -44,44 +43,42 @@ export default function Home() {
   }
 
   return (
-    <Layout>
-      <Container>
-        <List>
-          <h2>Indicador</h2>
-          <CheckboxList>
-            <Checkbox name="teste1" label="teste 1" />
-            <Checkbox name="teste2" label="teste 2" disabled />
-            <Checkbox name="teste3" label="teste 3" />
-            <Checkbox name="teste4" label="teste 4" />
-            <Checkbox name="teste5" label="teste 5" />
-          </CheckboxList>
-        </List>
-        <Main>
-          <YearSelector>
-            <h1>Anos</h1>
+    <Container>
+      <List>
+        <h2>Indicador</h2>
+        <CheckboxList>
+          <Checkbox name="teste1" label="teste 1" />
+          <Checkbox name="teste2" label="teste 2" disabled />
+          <Checkbox name="teste3" label="teste 3" />
+          <Checkbox name="teste4" label="teste 4" />
+          <Checkbox name="teste5" label="teste 5" />
+        </CheckboxList>
+      </List>
+      <Main>
+        <YearSelector>
+          <h1>Anos</h1>
 
-            <Slider
-              value={value}
-              onChange={(_, newValue) => handleChange(newValue as number[])}
-              valueLabelDisplay="on"
-              min={1960}
-              step={1}
-              max={2020}
-              onChangeCommitted={() => console.log(value)}
-            />
-          </YearSelector>
-        </Main>
-        <List>
-          <h2>Países</h2>
-          <CheckboxList>
-            <Checkbox name="pais 1" label="pais  1" />
-            <Checkbox name="pais 2" label="pais  2" />
-            <Checkbox name="pais 3" label="pais  3" />
-            <Checkbox name="pais 4" label="pais  4" />
-            <Checkbox name="pais 5" label="pais  5" />
-          </CheckboxList>
-        </List>
-      </Container>
-    </Layout>
+          <Slider
+            value={value}
+            onChange={(_, newValue) => handleChange(newValue as number[])}
+            valueLabelDisplay="on"
+            min={1960}
+            step={1}
+            max={2020}
+            onChangeCommitted={() => console.log(value)}
+          />
+        </YearSelector>
+      </Main>
+      <List>
+        <h2>Países</h2>
+        <CheckboxList>
+          <Checkbox name="pais 1" label="pais  1" />
+          <Checkbox name="pais 2" label="pais  2" />
+          <Checkbox name="pais 3" label="pais  3" />
+          <Checkbox name="pais 4" label="pais  4" />
+          <Checkbox name="pais 5" label="pais  5" />
+        </CheckboxList>
+      </List>
+    </Container>
   )
 }

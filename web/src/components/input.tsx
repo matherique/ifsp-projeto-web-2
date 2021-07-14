@@ -19,7 +19,8 @@ export const StyledInput = styled.input<StyledInputProps>`
     border: 2px solid green;
   }
 `
-const Container = styled.div`
+
+const Container = styled.div<{ error?: boolean }>`
   display: flex;
   flex-direction: column;
 
@@ -32,7 +33,7 @@ const Container = styled.div`
   & > span {
     font-size: 12px;
     padding: 0px 4px;
-    color: var(--gray);
+    color: ${props => (!!props.error ? 'var(--red)' : 'var(--gray)')};
   }
 `
 
@@ -46,7 +47,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   ref
 ) => {
   return (
-    <Container>
+    <Container error={!!error}>
       <span>{props.placeholder}</span>
       <StyledInput
         error={!!error}
@@ -58,7 +59,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         placeholder=""
         ref={ref}
       />
-      {error ? <small>{errorMessage}</small> : null}
+      {error ? <small>{errorMessage || 'campo necessário'}</small> : null}
     </Container>
   )
 }
