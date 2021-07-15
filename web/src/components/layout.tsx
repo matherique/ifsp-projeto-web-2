@@ -1,11 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import signOutIcon from '../../public/sign-out.svg'
 import Logo from '@/components/logo'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
 import { useAuth } from '@/contexts/auth-context'
 
 const Container = styled.div`
@@ -77,12 +77,8 @@ type LayoutProps = {
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth()
   const router = useRouter()
-
-  function handleSignOut() {
-    signOut()
-  }
 
   return (
     <Container>
@@ -108,13 +104,13 @@ export default function Layout({ children }: LayoutProps) {
         </Menu>
         <Config>
           <span onClick={() => router.push('/painel/usuario')}>
-            Matheus Henrique
+            {user?.name.split(' ').slice(0, 2).join(' ')}
           </span>
           <IconSignOut
             src={signOutIcon}
             alt="sair"
             title="sair"
-            onClick={() => handleSignOut()}
+            onClick={() => signOut()}
           />
         </Config>
       </Header>

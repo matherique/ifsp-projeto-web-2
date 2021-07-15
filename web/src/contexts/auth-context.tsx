@@ -1,9 +1,9 @@
 import * as React from 'react'
 import type { User } from '@/types'
 import { createApiClient } from '@/services/api'
-import { setCookie, destroyCookie } from 'nookies'
+import { setCookie, destroyCookie, parseCookies } from 'nookies'
 import Router from 'next/router'
-import { TOKEN_NAME } from '@/contants'
+import { TOKEN_NAME, USER_DATA } from '@/contants'
 
 type SignInParams = {
   email: string
@@ -11,7 +11,7 @@ type SignInParams = {
 }
 
 type AuthContextType = {
-  user?: any
+  user?: User
   signIn: (data: SignInParams) => Promise<void>
   signOut: () => Promise<void>
 }
@@ -28,7 +28,7 @@ type LoginResponse = {
 export const AuthContext = React.createContext({} as AuthContextType)
 
 export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
-  const [user, setUser] = React.useState<User | undefined>()
+  const [userInfo, setUserInfo] = React.useState<User | undefined>()
 
   async function signIn({ email, password }: SignInParams) {
     const api = createApiClient()
@@ -38,24 +38,38 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
       password
     })
 
-    console.log(response.data)
-    const { token } = response.data
+    const { token, user } = response.data
 
     setCookie(undefined, TOKEN_NAME, token, {
       maxAge: 60 * 60 * 1 // 1 hour
     })
 
-    setUser(user)
-    Router.push('/painel')
+    setCookie(undefined, USER_DATA, JSON.stringify(user), {
+      maxAge: 60 * 60 * 1 // 1 hour
+    })
+
+    setUserInfo(user)
+    console.log(user)
   }
 
   async function signOut() {
     destroyCookie(undefined, TOKEN_NAME)
+    destroyCookie(undefined, USER_DATA)
+    setUserInfo(undefined)
     Router.push('/')
   }
 
+  React.useEffect(() => {
+    const cookies = parseCookies()
+    const userData = cookies[USER_DATA]
+
+    if (userData && !userInfo) {
+      setUserInfo(JSON.parse(userData) as User)
+    }
+  }, [userInfo])
+
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user: userInfo, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )

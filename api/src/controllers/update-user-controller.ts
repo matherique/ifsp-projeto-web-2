@@ -22,11 +22,10 @@ export class UpdateUserController implements Controller {
     httpRequest: HttpRequest<UpdateUserRequest>
   ): Promise<HttpResponse> {
     try {
-      const { id, name, email, password } = httpRequest.body
+      let { id, name, email, password } = httpRequest.body
       if (!id) return badRequest('missing id')
       if (!name) return badRequest('missing name')
       if (!email) return badRequest('missing email')
-      if (!password) return badRequest('missing password')
 
       const userData = { name, email, password }
       const updatedUser = await this.updateUserUsecase.handle(id, userData)

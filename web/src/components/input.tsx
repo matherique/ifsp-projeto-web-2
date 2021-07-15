@@ -59,7 +59,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         placeholder=""
         ref={ref}
       />
-      {error ? <small>{errorMessage || 'campo necessário'}</small> : null}
+      {error ? <small>{errorMessage || ''}</small> : null}
     </Container>
   )
 }
