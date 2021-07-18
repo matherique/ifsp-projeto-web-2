@@ -1,37 +1,12 @@
 import * as React from 'react'
 import { GetServerSideProps } from 'next'
-import { parseCookies } from 'nookies'
 
 import Layout from '@/components/layout'
 import EditarInfoUsuario from '@/screens/painel/user-info'
-import { TOKEN_NAME, USER_DATA } from '@/contants'
-import { createApiClient } from '@/services/api'
 import { User } from '@/types'
+import { withAuth } from '@/services/auth'
 
-export const getServerSideProps: GetServerSideProps = async context => {
-  const cookies = parseCookies(context)
-  const token = cookies[TOKEN_NAME]
-  const api = createApiClient(context)
-  const userInfo = JSON.parse(cookies[USER_DATA]) as User
-
-  const { data } = await api.get(`/user/${userInfo.id}`)
-
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false
-      }
-    }
-  }
-
-  return {
-    props: {
-      user: data,
-      userInfo
-    }
-  }
-}
+export const getServerSideProps: GetServerSideProps = withAuth()
 
 type EditarUsuarioProps = {
   user?: User

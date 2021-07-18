@@ -1,19 +1,24 @@
-import { GetServerSideProps } from 'next'
+import { GetServerSidePropsContext } from 'next'
 import { parseCookies } from 'nookies'
 
-export const getServerSideProps: GetServerSideProps = async context => {
-  const { TOKEN_NAME: token } = parseCookies(context)
+import { TOKEN_NAME } from '@/contants'
 
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false
+export function withAuth() {
+  return async function (context: GetServerSidePropsContext) {
+    const cookies = parseCookies(context)
+    const token = cookies[TOKEN_NAME]
+
+    if (!token) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false
+        }
       }
     }
-  }
 
-  return {
-    props: {}
+    return {
+      props: {}
+    }
   }
 }
