@@ -1,3 +1,4 @@
+import { UserPermission } from '../domain/models'
 import { UpdateUserUseCase } from '../domain/usecase'
 import {
   badRequest,
@@ -27,7 +28,13 @@ export class UpdateUserController implements Controller {
       if (!name) return badRequest('missing name')
       if (!email) return badRequest('missing email')
 
-      const userData = { name, email, password }
+      const userData = {
+        name,
+        email,
+        password,
+        permission: UserPermission.DEFAULT
+      }
+
       const updatedUser = await this.updateUserUsecase.handle(id, userData)
 
       return ok(updatedUser)

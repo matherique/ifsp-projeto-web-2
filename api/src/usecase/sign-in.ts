@@ -27,7 +27,10 @@ export class SignIn implements SignInUseCase {
     const currentDate = new Date()
     const expireIn = currentDate.setUTCHours(currentDate.getHours() + 8)
 
-    const token = await this.tokenService.encode({ id: user.id }, expireIn)
+    const token = await this.tokenService.encode(
+      { id: user.id, permission: user.permission },
+      expireIn
+    )
 
     return {
       token,
