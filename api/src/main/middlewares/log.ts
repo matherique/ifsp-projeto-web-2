@@ -6,8 +6,8 @@ export default async function log(
   next: NextFunction
 ): Promise<void> {
   console.log(
-    `${Date.toString()}- ${request.method} ${request.url} ${JSON.stringify(
-      request.headers
+    `${Date.now()} - ${request.method} ${request.url} ${JSON.stringify(
+      request.body
     )} `
   )
 
