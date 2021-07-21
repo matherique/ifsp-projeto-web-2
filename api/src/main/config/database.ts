@@ -10,11 +10,12 @@ export default async () => {
     password: '123',
     database: 'database',
     synchronize: true,
-    entities: ['src/repository/postgres/schemas/*.ts']
+    entities: ['src/repository/postgres/schemas/*.ts'],
+    migrations: ['src/repository/postgres/migrations/*.ts']
   })
 
   if (connection.isConnected) console.log('database connected')
+  await connection.runMigrations()
 
   return connection
 }
-
