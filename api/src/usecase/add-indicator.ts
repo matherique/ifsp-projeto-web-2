@@ -1,5 +1,6 @@
 import {
   AddIndicatorParams,
+  AddIndicatorResponse,
   AddIndicatorUseCase
 } from '../domain/usecase/add-indicator'
 import { IndicatorRepository } from './ports'
@@ -10,7 +11,7 @@ import { IndicatorRepository } from './ports'
 export class AddIndicator implements AddIndicatorUseCase {
   constructor(private readonly indicatorRepository: IndicatorRepository) {}
 
-  async handle({ data }: AddIndicatorParams): Promise<boolean> {
+  async handle({ data }: AddIndicatorParams): Promise<AddIndicatorResponse> {
     const [indicator_code, indicator_name, source_note, source_organization] =
       data
         .toString()
@@ -20,13 +21,13 @@ export class AddIndicator implements AddIndicatorUseCase {
         .split(',"')
         .map(l => l?.replace(/"/g, ''))
 
-    await this.indicatorRepository.add({
+    const indicator = await this.indicatorRepository.add({
       code: indicator_code,
       name: indicator_name,
       note: source_note,
       source_organization: source_organization
     })
 
-    return true
+    return indicator
   }
 }

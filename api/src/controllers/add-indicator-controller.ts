@@ -7,9 +7,13 @@ import {
 } from './ports/controller'
 import AdmZip from 'adm-zip'
 import { AddIndicatorUseCase } from '../domain/usecase/add-indicator'
+import { AddCountryUsecase } from '../domain/usecase/add-country'
 
 export class AddIndicatorController implements Controller {
-  constructor(private readonly addIndicatorUsecase: AddIndicatorUseCase) {}
+  constructor(
+    private readonly addIndicatorUsecase: AddIndicatorUseCase,
+    private readonly addCountryUsecase: AddCountryUsecase
+  ) {}
 
   async handle(httpRequest: HttpRequest<any>): Promise<HttpResponse> {
     const { file } = httpRequest
@@ -29,6 +33,10 @@ export class AddIndicatorController implements Controller {
     const indicatorDataFile = zip
       .getEntries()
       .find(f => f.entryName.startsWith('API'))
+
+    await this.addCountryUsecase.handle({
+      data: countryFile.getData()
+    })
 
     await this.addIndicatorUsecase.handle({
       data: indicatorFile.getData()
