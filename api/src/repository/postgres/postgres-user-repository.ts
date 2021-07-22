@@ -1,5 +1,4 @@
-import { Connection, getRepository, Repository } from 'typeorm'
-import { updateIndexedAccessTypeNode } from 'typescript'
+import { Connection, Repository } from 'typeorm'
 import { User } from '../../domain/models'
 import { UserData, UserRepository } from '../../usecase/ports'
 import { UserSchema } from './schemas'

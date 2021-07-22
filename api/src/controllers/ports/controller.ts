@@ -1,5 +1,13 @@
 export type HttpRequest<T = any> = {
   body: T
+  file: {
+    fieldname: string
+    originalname: string
+    encoding: string
+    mimetype: string
+    buffer: Buffer
+    size: number
+  }
 }
 
 export type HttpResponse = {

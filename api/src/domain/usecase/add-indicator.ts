@@ -1,8 +1,9 @@
+export type FileData = {
+  name: string
+  data: Buffer
+}
 export type AddIndicatorParams = {
-  code: string;
-  name: string;
-  note: string;
-  source_organization: string;
+  data: Buffer
 }
 
 export type AddIndicatorResponse = boolean

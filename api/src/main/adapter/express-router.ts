@@ -10,7 +10,8 @@ export function adaptRoute(
         ...req.body,
         ...req.params,
         ...req.query
-      }
+      },
+      file: req.file
     }
 
     const httpResponse = await controller.handle(httpRequest)

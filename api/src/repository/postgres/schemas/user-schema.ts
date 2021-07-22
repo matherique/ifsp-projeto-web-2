@@ -9,7 +9,7 @@ import { UserPermission } from '../../../domain/models'
 
 @Entity({ name: 'user' })
 export class UserSchema {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   public id: string
 
   @Column({ type: 'varchar', length: 100 })
