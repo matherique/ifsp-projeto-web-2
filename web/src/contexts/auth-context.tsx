@@ -41,15 +41,14 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
     const { token, user } = response.data
 
     setCookie(undefined, TOKEN_NAME, token, {
-      maxAge: 60 * 60 * 1 // 1 hour
+      maxAge: 60 * 60 * 8 // 1 hour
     })
-
     setCookie(undefined, USER_DATA, JSON.stringify(user), {
-      maxAge: 60 * 60 * 1 // 1 hour
+      maxAge: 60 * 60 * 8 // 1 hour
     })
 
     setUserInfo(user)
-    console.log(user)
+    Router.push('/painel')
   }
 
   async function signOut() {

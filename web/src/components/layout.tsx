@@ -7,6 +7,7 @@ import Link from 'next/link'
 import signOutIcon from '../../public/sign-out.svg'
 import Logo from '@/components/logo'
 import { useAuth } from '@/contexts/auth-context'
+import { UserPermission } from '@/types'
 
 const Container = styled.div`
   display: flex;
@@ -100,6 +101,37 @@ export default function Layout({ children }: LayoutProps) {
                 </StyledLink>
               </Link>
             </li>
+            {user?.permission === UserPermission.ADMIN ? (
+              <>
+                <li>
+                  <Link href="/painel/adicionar-pais" passHref>
+                    <StyledLink
+                      active={router.pathname === '/painel/adicionar-pais'}
+                    >
+                      adicionar pais
+                    </StyledLink>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/painel/adicionar-indicador" passHref>
+                    <StyledLink
+                      active={router.pathname === '/painel/adicionar-indicador'}
+                    >
+                      adicionar indicador
+                    </StyledLink>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/painel/relatorios" passHref>
+                    <StyledLink
+                      active={router.pathname === '/painel/relatorios'}
+                    >
+                      relatórios
+                    </StyledLink>
+                  </Link>
+                </li>
+              </>
+            ) : null}
           </ul>
         </Menu>
         <Config>

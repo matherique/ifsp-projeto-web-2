@@ -99,13 +99,9 @@ export default function LoginPage() {
       setFieldsError({ email: false, password: false })
     }
 
-    signIn({ email, password })
-      .then(_ => {
-        router.push('/painel')
-      })
-      .catch(_ => {
-        setError(true)
-      })
+    signIn({ email, password }).catch(_ => {
+      setError(true)
+    })
   }
 
   return (
