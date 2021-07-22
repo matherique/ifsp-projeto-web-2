@@ -10,6 +10,10 @@ export class PostgresIndicatorRepository implements IndicatorRepository {
     this.repository = connection.getRepository(IndicatorSchema)
   }
 
+  async findAll(): Promise<Indicator[]> {
+    return this.repository.find()
+  }
+
   async add(data: Partial<Indicator>): Promise<Indicator> {
     const indicators = await this.repository.findOne({
       where: { code: data.code }

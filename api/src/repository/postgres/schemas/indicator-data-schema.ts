@@ -5,23 +5,21 @@ import {
   JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
+  Unique,
   UpdateDateColumn
 } from 'typeorm'
-import { CountrySchema } from './country-schema'
-import { IndicatorSchema } from './indicator-schema'
 
 @Entity({ name: 'indicator_data' })
+@Unique('indicator_data_uniq', ['country_id', 'indicator_id', 'year'])
 export class IndicatorDataSchema {
   @PrimaryGeneratedColumn('uuid')
   public id: string
 
-  @OneToOne(() => CountrySchema)
-  @JoinColumn({ name: 'country_id' })
+  @Column({ type: 'varchar', length: 100 })
   public country_id: string
 
-  @OneToOne(() => IndicatorSchema)
-  @JoinColumn({ name: 'indicator_id' })
-  public indicator_id: number
+  @Column({ type: 'varchar', length: 100 })
+  public indicator_id: string
 
   @Column({ type: 'double precision' })
   public value: number

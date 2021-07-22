@@ -10,6 +10,10 @@ export class PostgresCountryRepository implements CountryRepository {
     this.repository = connection.getRepository(CountrySchema)
   }
 
+  async findAll(): Promise<Country[]> {
+    return this.repository.find()
+  }
+
   async add(data: Partial<Country>): Promise<Country> {
     const countries = await this.repository.findOne({
       where: { code: data.code }

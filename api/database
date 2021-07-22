@@ -2,8 +2,4 @@
 
 NAME=projeto-web2-database
 
-docker run -d -p 5433:5432 \
-  --name $NAME \
-  -e POSTGRES_DB=database \
-  -e POSTGRES_PASSWORD=123 \
-  postgres
+docker run -d -p 5433:5432 --name $NAME -e POSTGRES_DB=database -e POSTGRES_PASSWORD=123 postgres
