@@ -25,6 +25,9 @@ export class PostgresIndicatorDataRepository
         country_id: In(data.countries_id),
         indicator_id: In(data.indicators_id),
         year: Between(data.yearStart, data.yearEnd)
+      },
+      order: {
+        year: 'ASC'
       }
     })
   }
