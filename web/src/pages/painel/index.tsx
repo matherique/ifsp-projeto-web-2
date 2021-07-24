@@ -3,14 +3,31 @@ import { GetServerSideProps } from 'next'
 
 import Home from '@/screens/painel/home'
 import Layout from '@/components/layout'
-import { withAuth } from '@/services/auth'
+import { createApiClient } from '@/services/api'
+import { Country, Indicator } from '@/types'
 
-export const getServerSideProps: GetServerSideProps = withAuth()
+const api = createApiClient()
+export const getServerSideProps: GetServerSideProps = async context => {
+  const countriesResponse = await api.get('/country')
+  const indicatorResponse = await api.get('/indicator')
 
-export default function PainelHome() {
+  return {
+    props: {
+      indicators: indicatorResponse.data || [],
+      countries: countriesResponse.data || []
+    }
+  }
+}
+
+type PainelHomeProps = {
+  countries: Country[]
+  indicators: Indicator[]
+}
+
+export default function PainelHome(props: PainelHomeProps) {
   return (
     <Layout>
-      <Home />
+      <Home indicators={props.indicators} countries={props.countries} />
     </Layout>
   )
 }

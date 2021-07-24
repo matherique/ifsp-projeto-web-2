@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 import Checkbox from '@/components/checkbox'
 import { Slider } from '@material-ui/core'
+import { Country, Indicator } from '@/types'
+import { createApiClient } from '@/services/api'
 
 const Container = styled.div`
   display: flex;
@@ -24,6 +26,8 @@ const Main = styled.div`
 
 const CheckboxList = styled.div`
   margin: 5px 0px;
+  height: 60vh;
+  overflow: auto;
 `
 
 const YearSelector = styled.div`
@@ -35,23 +39,71 @@ const YearSelector = styled.div`
   }
 `
 
-export default function Home() {
-  const [value, setValue] = React.useState<number[]>([1960, 2020])
+type HomeProps = {
+  countries: Country[]
+  indicators: Indicator[]
+}
 
-  function handleChange(newValue: number[]) {
-    setValue(newValue)
+const api = createApiClient()
+
+export default function Home({ countries, indicators }: HomeProps) {
+  const [yearInterval, setYearInterval] = React.useState<number[]>([1960, 2020])
+  const [selectedCountriesId, setSelectedCountriesId] = React.useState<
+    string[]
+  >([])
+  const [selectedIndicatorsId, setSelectedIndicatorsId] = React.useState<
+    string[]
+  >([])
+
+  function handleOnChangeCountry(isChecked: boolean, id: string) {
+    if (!isChecked) {
+      setSelectedCountriesId(selectedCountriesId.filter(c => c !== id))
+      return
+    }
+
+    setSelectedCountriesId(old => [...old, id])
   }
+
+  function handleOnChangeIndicator(isChecked: boolean, id: string) {
+    if (!isChecked) {
+      setSelectedIndicatorsId(selectedIndicatorsId.filter(i => i !== id))
+      return
+    }
+
+    setSelectedIndicatorsId(old => [...old, id])
+  }
+
+  React.useEffect(() => {
+    if (!selectedCountriesId.length || !selectedIndicatorsId.length) return
+
+    api
+      .get('/indicator/filter', {
+        params: {
+          indicators: selectedIndicatorsId,
+          countries: selectedCountriesId,
+          start: yearInterval[0],
+          end: yearInterval[1]
+        }
+      })
+      .then(r => console.log(r))
+      .catch(error => console.log(error.data))
+  }, [selectedCountriesId, selectedIndicatorsId, yearInterval])
 
   return (
     <Container>
       <List>
         <h2>Indicador</h2>
         <CheckboxList>
-          <Checkbox name="teste1" label="teste 1" />
-          <Checkbox name="teste2" label="teste 2" disabled />
-          <Checkbox name="teste3" label="teste 3" />
-          <Checkbox name="teste4" label="teste 4" />
-          <Checkbox name="teste5" label="teste 5" />
+          {indicators?.map(indicator => (
+            <Checkbox
+              key={indicator.id}
+              name={indicator.code}
+              label={indicator.name}
+              onChange={e =>
+                handleOnChangeIndicator(e.target.checked, indicator.id)
+              }
+            />
+          ))}
         </CheckboxList>
       </List>
       <Main>
@@ -59,24 +111,29 @@ export default function Home() {
           <h1>Anos</h1>
 
           <Slider
-            value={value}
-            onChange={(_, newValue) => handleChange(newValue as number[])}
+            value={yearInterval}
+            onChange={(_, newValue) => setYearInterval(newValue as number[])}
             valueLabelDisplay="on"
             min={1960}
             step={1}
             max={2020}
-            onChangeCommitted={() => console.log(value)}
+            onChangeCommitted={() => console.log(yearInterval)}
           />
         </YearSelector>
       </Main>
       <List>
         <h2>Países</h2>
         <CheckboxList>
-          <Checkbox name="pais 1" label="pais  1" />
-          <Checkbox name="pais 2" label="pais  2" />
-          <Checkbox name="pais 3" label="pais  3" />
-          <Checkbox name="pais 4" label="pais  4" />
-          <Checkbox name="pais 5" label="pais  5" />
+          {countries?.map(country => (
+            <Checkbox
+              key={country.id}
+              name={country.code}
+              label={country.name}
+              onChange={e =>
+                handleOnChangeCountry(e.target.checked, country.id)
+              }
+            />
+          ))}
         </CheckboxList>
       </List>
     </Container>
