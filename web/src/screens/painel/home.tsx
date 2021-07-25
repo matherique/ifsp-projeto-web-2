@@ -1,9 +1,19 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts'
 
 import Checkbox from '@/components/checkbox'
 import { Slider } from '@material-ui/core'
-import { Country, Indicator } from '@/types'
+import { Country, Indicator, IndicatorData } from '@/types'
 import { createApiClient } from '@/services/api'
 
 const Container = styled.div`
@@ -22,6 +32,9 @@ const List = styled.div`
 const Main = styled.div`
   flex: 3;
   padding: 20px;
+
+  display: flex;
+  flex-direction: column;
 `
 
 const CheckboxList = styled.div`
@@ -39,6 +52,10 @@ const YearSelector = styled.div`
   }
 `
 
+const ChartContent = styled.div`
+  flex-grow: 1;
+`
+
 type HomeProps = {
   countries: Country[]
   indicators: Indicator[]
@@ -46,8 +63,16 @@ type HomeProps = {
 
 const api = createApiClient()
 
+const colors = ['#f00', '#000', '#0f0', '#00f', '#ff0']
+
+type FilterResponse = {
+  year: number
+  [key: string]: number
+}
+
 export default function Home({ countries, indicators }: HomeProps) {
   const [yearInterval, setYearInterval] = React.useState<number[]>([1960, 2020])
+  const [chartData, setChartData] = React.useState<FilterResponse[]>([])
   const [selectedCountriesId, setSelectedCountriesId] = React.useState<
     string[]
   >([])
@@ -77,7 +102,7 @@ export default function Home({ countries, indicators }: HomeProps) {
     if (!selectedCountriesId.length || !selectedIndicatorsId.length) return
 
     api
-      .get('/indicator/filter', {
+      .get<FilterResponse[]>('/indicator/filter', {
         params: {
           indicators: selectedIndicatorsId,
           countries: selectedCountriesId,
@@ -85,7 +110,9 @@ export default function Home({ countries, indicators }: HomeProps) {
           end: yearInterval[1]
         }
       })
-      .then(r => console.log(r))
+      .then(r => {
+        setChartData(r.data || [])
+      })
       .catch(error => console.log(error.data))
   }, [selectedCountriesId, selectedIndicatorsId, yearInterval])
 
@@ -120,6 +147,40 @@ export default function Home({ countries, indicators }: HomeProps) {
             onChangeCommitted={() => console.log(yearInterval)}
           />
         </YearSelector>
+        {chartData.length ? (
+          <ChartContent>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                width={500}
+                height={300}
+                data={chartData}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="year" domain={['auto', 'auto']} />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                {selectedCountriesId.map((id, i) => {
+                  return (
+                    <Line
+                      type="monotone"
+                      name={countries.find(c => c.id === id)?.name || id}
+                      key={id}
+                      dataKey={id}
+                      stroke={colors[i]}
+                    />
+                  )
+                })}
+              </LineChart>
+            </ResponsiveContainer>
+          </ChartContent>
+        ) : null}
       </Main>
       <List>
         <h2>Países</h2>
