@@ -42,7 +42,23 @@ export class GetIndicatorDataController implements Controller {
         yearEnd: end
       })
 
-      return ok(data)
+      let response = []
+
+      for (let i = start; i <= end; i++) {
+        response.push({ year: +i })
+      }
+
+      for (const d of data) {
+        response = response.map(r => {
+          if (r.year === d.year) {
+            return { ...r, [d.country_id]: d.value }
+          }
+
+          return r
+        })
+      }
+
+      return ok(response)
     } catch (error) {
       console.error(error)
       return internalServerError(error.message)
