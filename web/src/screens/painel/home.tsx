@@ -8,7 +8,9 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer
+  ResponsiveContainer,
+  Area,
+  AreaChart
 } from 'recharts'
 
 import Checkbox from '@/components/checkbox'
@@ -54,6 +56,15 @@ const YearSelector = styled.div`
 
 const ChartContent = styled.div`
   flex-grow: 1;
+  height: 200px;
+
+  h3 {
+    text-align: center;
+  }
+
+  p {
+    margin: 10px 0px;
+  }
 `
 
 type HomeProps = {
@@ -105,9 +116,7 @@ export default function Home({ countries, indicators }: HomeProps) {
       .get<FilterResponse[]>('/indicator/filter', {
         params: {
           indicators: selectedIndicatorsId,
-          countries: selectedCountriesId,
-          start: yearInterval[0],
-          end: yearInterval[1]
+          countries: selectedCountriesId
         }
       })
       .then(r => {
@@ -115,6 +124,14 @@ export default function Home({ countries, indicators }: HomeProps) {
       })
       .catch(error => console.log(error.data))
   }, [selectedCountriesId, selectedIndicatorsId, yearInterval])
+
+  const toPercent = (decimal: number, fixed = 0) => `${decimal.toFixed(2)}%`
+
+  function filterChartDataList() {
+    setChartData(old =>
+      old.filter(d => d.year >= yearInterval[0] && d.year <= yearInterval[1])
+    )
+  }
 
   return (
     <Container>
@@ -144,41 +161,49 @@ export default function Home({ countries, indicators }: HomeProps) {
             min={1960}
             step={1}
             max={2020}
-            onChangeCommitted={() => console.log(yearInterval)}
+            onChangeCommitted={() => filterChartDataList()}
           />
         </YearSelector>
         {chartData.length ? (
           <ChartContent>
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                width={500}
-                height={300}
-                data={chartData}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" domain={['auto', 'auto']} />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                {selectedCountriesId.map((id, i) => {
-                  return (
-                    <Line
-                      type="monotone"
-                      name={countries.find(c => c.id === id)?.name || id}
-                      key={id}
-                      dataKey={id}
-                      stroke={colors[i]}
-                    />
-                  )
-                })}
-              </LineChart>
-            </ResponsiveContainer>
+            {indicators.map(indicator => (
+              <React.Fragment key={indicator.id}>
+                <h3>{indicator.name}</h3>
+                <ResponsiveContainer width="100%" height="40%">
+                  <LineChart
+                    width={500}
+                    height={100}
+                    data={chartData}
+                    stackOffset="expand"
+                    syncId="anyid"
+                    margin={{
+                      top: 5,
+                      right: 30,
+                      left: 20,
+                      bottom: 5
+                    }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="year" domain={['auto', 'auto']} />
+                    <YAxis tickFormatter={toPercent} />
+                    <Tooltip />
+                    <Legend />
+                    {selectedCountriesId.map((id, i) => {
+                      return (
+                        <Line
+                          type="monotone"
+                          name={countries.find(c => c.id === id)?.name || id}
+                          key={id}
+                          dataKey={id}
+                          stroke={colors[i]}
+                          fill={colors[i]}
+                        />
+                      )
+                    })}
+                  </LineChart>
+                </ResponsiveContainer>
+              </React.Fragment>
+            ))}
           </ChartContent>
         ) : null}
       </Main>
