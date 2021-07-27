@@ -3,16 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 export default createGlobalStyle`
   :root {
     font-size: 14px;
-    --black: #000000; 
-    --dark-white: hsl(0°, 0%, 98%);
-    --white: #FFFFFF; 
-    /*
-    --black: #ffffff;
-    --white: #000000;
-    --dark-white: hsl(0, 0%, 2%);
-    */
     --green: #1BB55C;
-    --black2: #263238;
     --gray: #979797;
     --red: #ff5555;
   }
@@ -22,9 +13,21 @@ export default createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
   }
-
+  
+  body[data-theme='light'] {
+    --color-text: #000000;
+    --color-background: hsl(0, 0%, 98%);
+    --black: hsl(200, 19%, 18%)
+  }
+  
+  body[data-theme='dark'] {
+    --color-text: #ffffff;
+    --color-background: hsl(0, 20%, 2%);
+    --black: hsl(200, 19%, 82%)
+  }
+  
   body {
-    background-color: var(--dark-white);
-    color: var(--black);
+    background-color: var(--color-background);
+    color: var(--color-text);
   }
 `

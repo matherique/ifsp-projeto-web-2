@@ -9,7 +9,7 @@ import Logo from '@/components/logo'
 import { createApiClient } from '@/services/api'
 
 const Container = styled.div`
-  background-color: var(--dark-white);
+  background-color: var(--color-background);
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -22,7 +22,7 @@ const Form = styled.form`
   margin-top: 100px;
   padding-top: 30px;
 
-  background-color: var(--white);
+  background-color: var(--color-background);
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -53,12 +53,12 @@ const Buttons = styled.div`
   }
 
   & > p > a {
-    color: var(--black2);
+    color: var(--black);
     text-decoration: none;
   }
 
   & > p > a:hover {
-    color: var(--black2);
+    color: var(--black);
     text-decoration: underline;
   }
 `

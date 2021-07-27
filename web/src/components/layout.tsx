@@ -65,7 +65,7 @@ const StyledLink = styled.a<StyledLinkProps>`
   font-size: 20px;
   font-weight: 500;
   text-decoration: none;
-  color: ${props => (props.active ? 'var(--red)' : 'var(--black2)')};
+  color: ${props => (props.active ? 'var(--red)' : 'var(--black)')};
 
   &:hover {
     text-decoration: underline;
