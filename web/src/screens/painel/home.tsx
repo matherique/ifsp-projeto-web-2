@@ -76,14 +76,18 @@ const api = createApiClient()
 
 const colors = ['#f00', '#000', '#0f0', '#00f', '#ff0']
 
-type FilterResponse = {
+type IndicatorResponseData = {
   year: number
   [key: string]: number
 }
 
+type FilterResponse = {
+  [key: string]: IndicatorResponseData[]
+}
+
 export default function Home({ countries, indicators }: HomeProps) {
   const [yearInterval, setYearInterval] = React.useState<number[]>([1960, 2020])
-  const [chartData, setChartData] = React.useState<FilterResponse[]>([])
+  const [chartData, setChartData] = React.useState<FilterResponse>()
   const [selectedCountriesId, setSelectedCountriesId] = React.useState<
     string[]
   >([])
@@ -113,24 +117,26 @@ export default function Home({ countries, indicators }: HomeProps) {
     if (!selectedCountriesId.length || !selectedIndicatorsId.length) return
 
     api
-      .get<FilterResponse[]>('/indicator/filter', {
+      .get<FilterResponse>('/indicator/filter', {
         params: {
           indicators: selectedIndicatorsId,
           countries: selectedCountriesId
         }
       })
       .then(r => {
-        setChartData(r.data || [])
+        setChartData(r.data)
       })
       .catch(error => console.log(error.data))
   }, [selectedCountriesId, selectedIndicatorsId, yearInterval])
 
-  const toPercent = (decimal: number, fixed = 0) => `${decimal.toFixed(2)}%`
+  const toPercent = (decimal: number) => `${decimal.toFixed(2)}%`
 
   function filterChartDataList() {
+    /*
     setChartData(old =>
       old.filter(d => d.year >= yearInterval[0] && d.year <= yearInterval[1])
     )
+      */
   }
 
   return (
@@ -164,46 +170,57 @@ export default function Home({ countries, indicators }: HomeProps) {
             onChangeCommitted={() => filterChartDataList()}
           />
         </YearSelector>
-        {chartData.length ? (
+        {!!chartData ? (
           <ChartContent>
-            {indicators.map(indicator => (
-              <React.Fragment key={indicator.id}>
-                <h3>{indicator.name}</h3>
-                <ResponsiveContainer width="100%" height="40%">
-                  <LineChart
-                    width={500}
-                    height={100}
-                    data={chartData}
-                    stackOffset="expand"
-                    syncId="anyid"
-                    margin={{
-                      top: 5,
-                      right: 30,
-                      left: 20,
-                      bottom: 5
-                    }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="year" domain={['auto', 'auto']} />
-                    <YAxis tickFormatter={toPercent} />
-                    <Tooltip />
-                    <Legend />
-                    {selectedCountriesId.map((id, i) => {
-                      return (
-                        <Line
-                          type="monotone"
-                          name={countries.find(c => c.id === id)?.name || id}
-                          key={id}
-                          dataKey={id}
-                          stroke={colors[i]}
-                          fill={colors[i]}
+            {indicators
+              .filter(indicator => selectedIndicatorsId.includes(indicator.id))
+              .map(indicator => {
+                const indicatorChartData = chartData[indicator.id]
+                return (
+                  <React.Fragment key={indicator.id}>
+                    <h3>{indicator.name}</h3>
+                    <ResponsiveContainer width="100%" height="50%">
+                      <LineChart
+                        width={500}
+                        height={100}
+                        data={indicatorChartData}
+                        stackOffset="expand"
+                        syncId="anyid"
+                        margin={{
+                          top: 5,
+                          right: 30,
+                          left: 20,
+                          bottom: 5
+                        }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis
+                          dataKey="year"
+                          domain={[0, 'dataMax + 1000']}
+                          tickFormatter={toPercent}
                         />
-                      )
-                    })}
-                  </LineChart>
-                </ResponsiveContainer>
-              </React.Fragment>
-            ))}
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        {selectedCountriesId.map((id, i) => {
+                          return (
+                            <Line
+                              type="monotone"
+                              name={
+                                countries.find(c => c.id === id)?.name || id
+                              }
+                              key={id}
+                              dataKey={id}
+                              stroke={colors[i]}
+                              fill={colors[i]}
+                            />
+                          )
+                        })}
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </React.Fragment>
+                )
+              })}
           </ChartContent>
         ) : null}
       </Main>
