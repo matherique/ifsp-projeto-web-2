@@ -26,7 +26,7 @@ const List = styled.div`
   padding: 20px;
 
   & > h2 {
-    border-bottom: 2px solid var(--black2);
+    border-bottom: 2px solid var(--black);
     width: 50%;
   }
 `
@@ -74,8 +74,8 @@ type HomeProps = {
 
 const api = createApiClient()
 
-const colors = ['#f00', '#000', '#0f0', '#00f', '#ff0']
-
+const colors = Array.from({ length: 12 }, (_, i) => `hsl(${i * 30}, 100%, 50%)`)
+console.log(colors)
 type IndicatorResponseData = {
   year: number
   [key: string]: number
@@ -129,7 +129,9 @@ export default function Home({ countries, indicators }: HomeProps) {
       .catch(error => console.log(error.data))
   }, [selectedCountriesId, selectedIndicatorsId, yearInterval])
 
-  const toPercent = (decimal: number) => `${decimal.toFixed(2)}%`
+  const toPercent = (decimal: number) => {
+    return `${decimal.toFixed(2)}%`
+  }
 
   function filterChartDataList() {
     /*
@@ -197,7 +199,7 @@ export default function Home({ countries, indicators }: HomeProps) {
                         <XAxis
                           dataKey="year"
                           domain={[0, 'dataMax + 1000']}
-                          tickFormatter={toPercent}
+                          /* tickFormatter={toPercent} */
                         />
                         <YAxis />
                         <Tooltip />
