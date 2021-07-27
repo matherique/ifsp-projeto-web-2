@@ -15,6 +15,13 @@ type GetIndicatorDataBodyData = {
   end: number
 }
 
+type Response = {
+  [key: string]: {
+    [key: string]: number
+    year: number
+  }[]
+}
+
 export class GetIndicatorDataController implements Controller {
   constructor(
     private readonly getIndicatorDataUsecase: GetIndicatorDataUsecase
@@ -35,30 +42,36 @@ export class GetIndicatorDataController implements Controller {
       if (!start) start = 1960
       if (!end) end = 2020
 
-      const data = await this.getIndicatorDataUsecase.handle({
-        countries,
-        indicators,
-        yearStart: start,
-        yearEnd: end
-      })
+      const resp: Response = {}
 
-      let response = []
-
-      for (let i = start; i <= end; i++) {
-        response.push({ year: +i })
-      }
-
-      for (const d of data) {
-        response = response.map(r => {
-          if (r.year === d.year) {
-            return { ...r, [d.country_id]: d.value }
-          }
-
-          return r
+      for (const indicator_id of indicators) {
+        const data = await this.getIndicatorDataUsecase.handle({
+          countries,
+          indicators: [indicator_id],
+          yearStart: start,
+          yearEnd: end
         })
+
+        let yearData = []
+
+        for (let i = start; i <= end; i++) {
+          yearData.push({ year: +i })
+        }
+
+        for (const d of data) {
+          yearData = yearData.map(r => {
+            if (r.year === d.year) {
+              return { ...r, [d.country_id]: d.value }
+            }
+
+            return r
+          })
+        }
+
+        Object.assign(resp, { [indicator_id]: yearData })
       }
 
-      return ok(response)
+      return ok(resp)
     } catch (error) {
       console.error(error)
       return internalServerError(error.message)
