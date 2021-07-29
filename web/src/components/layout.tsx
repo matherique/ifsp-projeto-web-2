@@ -139,7 +139,7 @@ export default function Layout({ children }: LayoutProps) {
           <span onClick={() => router.push('/painel/usuario')}>
             {user?.name.split(' ').slice(0, 2).join(' ')}
           </span>
-          <IconSignOut title="sair" onClick={() => signOut()} />
+          <IconSignOut onClick={() => signOut()} />
         </Config>
       </Header>
       <Main>{children}</Main>
