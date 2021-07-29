@@ -8,6 +8,7 @@ import signOutIcon from '../../public/sign-out.svg'
 import Logo from '@/components/logo'
 import { useAuth } from '@/contexts/auth-context'
 import { UserPermission } from '@/types'
+import { LogOut } from 'react-feather'
 
 const Container = styled.div`
   display: flex;
@@ -33,13 +34,13 @@ const Config = styled.div`
     cursor: pointer;
   }
 `
-const IconSignOut = styled(Image)`
+const IconSignOut = styled(LogOut)`
   cursor: pointer;
+  stroke: var(--color-text);
 `
 
 const Main = styled.div`
   flex: 1;
-  margin: 0 100px;
 `
 
 const Menu = styled.div`
@@ -138,12 +139,7 @@ export default function Layout({ children }: LayoutProps) {
           <span onClick={() => router.push('/painel/usuario')}>
             {user?.name.split(' ').slice(0, 2).join(' ')}
           </span>
-          <IconSignOut
-            src={signOutIcon}
-            alt="sair"
-            title="sair"
-            onClick={() => signOut()}
-          />
+          <IconSignOut title="sair" onClick={() => signOut()} />
         </Config>
       </Header>
       <Main>{children}</Main>
