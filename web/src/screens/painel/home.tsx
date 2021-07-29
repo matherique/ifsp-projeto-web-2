@@ -41,7 +41,7 @@ const Main = styled.div`
 
 const CheckboxList = styled.div`
   margin: 5px 0px;
-  height: 60vh;
+  height: 70vh;
   overflow: auto;
 `
 
