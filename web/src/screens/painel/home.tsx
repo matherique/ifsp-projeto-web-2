@@ -75,7 +75,7 @@ type HomeProps = {
 const api = createApiClient()
 
 const colors = Array.from({ length: 12 }, (_, i) => `hsl(${i * 30}, 100%, 50%)`)
-console.log(colors)
+
 type IndicatorResponseData = {
   year: number
   [key: string]: number
@@ -127,18 +127,21 @@ export default function Home({ countries, indicators }: HomeProps) {
         setChartData(r.data)
       })
       .catch(error => console.log(error.data))
-  }, [selectedCountriesId, selectedIndicatorsId, yearInterval])
-
-  const toPercent = (decimal: number) => {
-    return `${decimal.toFixed(2)}%`
-  }
+  }, [selectedCountriesId, selectedIndicatorsId])
 
   function filterChartDataList() {
-    /*
-    setChartData(old =>
-      old.filter(d => d.year >= yearInterval[0] && d.year <= yearInterval[1])
-    )
-      */
+    if (!chartData) return
+    let newChartData: FilterResponse = {}
+    selectedIndicatorsId.forEach(ind => {
+      const indicator = chartData[ind]
+
+      const filteredList = indicator.filter(
+        i => i.year >= yearInterval[0] && i.year <= yearInterval[1]
+      )
+      Object.assign(newChartData, { [ind]: filteredList })
+    })
+
+    setChartData(newChartData)
   }
 
   return (

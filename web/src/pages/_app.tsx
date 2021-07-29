@@ -5,7 +5,7 @@ import { AuthProvider } from '@/contexts/auth-context'
 
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
-    document.body.dataset.theme = 'light'
+    document.body.dataset.theme = 'dark'
   }, [])
   return (
     <AuthProvider>
