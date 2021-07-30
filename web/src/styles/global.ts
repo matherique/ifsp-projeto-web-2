@@ -27,6 +27,7 @@ export default createGlobalStyle`
   }
   
   body {
+    transition: background 0.3s ease;
     background-color: var(--color-background);
     color: var(--color-text);
   }

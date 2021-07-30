@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { LogOut } from 'react-feather'
 
-import signOutIcon from '../../public/sign-out.svg'
 import Logo from '@/components/logo'
 import { useAuth } from '@/contexts/auth-context'
 import { UserPermission } from '@/types'
-import { LogOut } from 'react-feather'
+import ThemeSwitch from '@/components/theme-switch'
+import { useTheme } from '@/contexts/theme-context'
 
 const Container = styled.div`
   display: flex;
@@ -80,7 +81,12 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   const { signOut, user } = useAuth()
+  const { theme } = useTheme()
   const router = useRouter()
+
+  React.useEffect(() => {
+    document.body.dataset.theme = theme
+  }, [theme])
 
   return (
     <Container>
@@ -136,6 +142,7 @@ export default function Layout({ children }: LayoutProps) {
           </ul>
         </Menu>
         <Config>
+          <ThemeSwitch />
           <span onClick={() => router.push('/painel/usuario')}>
             {user?.name.split(' ').slice(0, 2).join(' ')}
           </span>
