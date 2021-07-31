@@ -111,6 +111,15 @@ export default function Layout({ children }: LayoutProps) {
             {user?.permission === UserPermission.ADMIN ? (
               <>
                 <li>
+                  <Link href="/painel/gerenciar-usuarios" passHref>
+                    <StyledLink
+                      active={router.pathname === '/painel/gerenciar-usuarios'}
+                    >
+                      gerenciar usuários
+                    </StyledLink>
+                  </Link>
+                </li>
+                <li>
                   <Link href="/painel/adicionar-indicador" passHref>
                     <StyledLink
                       active={router.pathname === '/painel/adicionar-indicador'}
