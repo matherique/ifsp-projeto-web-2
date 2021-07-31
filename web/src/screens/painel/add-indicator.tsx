@@ -8,16 +8,41 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
+
+  .error,
+  .success {
+    font-size: 18px;
+  }
+
+  .error {
+    color: var(--red);
+  }
+
+  .success {
+    color: var(--green);
+  }
 `
 
 const api = createApiClient()
 
 export default function AddIndicator() {
+  const [success, setSuccess] = React.useState(false)
+  const [error, setError] = React.useState(false)
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     const data = new FormData(event.currentTarget)
-    api.post('/indicator/', data).then(console.log).catch(console.log)
+    api
+      .post('/indicator/', data)
+      .then(() => {
+        setSuccess(true)
+        setError(false)
+      })
+      .catch(() => {
+        setSuccess(false)
+        setError(true)
+      })
   }
 
   return (
@@ -27,6 +52,8 @@ export default function AddIndicator() {
         <input type="file" name="file" />
         <button type="submit">enviar</button>
       </form>
+      {success && <p className="success">Indicator adicionado com sucesso</p>}
+      {error && <p className="error">Erro ao adicionar indicador</p>}
     </Container>
   )
 }
