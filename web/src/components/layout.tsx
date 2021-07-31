@@ -111,15 +111,6 @@ export default function Layout({ children }: LayoutProps) {
             {user?.permission === UserPermission.ADMIN ? (
               <>
                 <li>
-                  <Link href="/painel/adicionar-pais" passHref>
-                    <StyledLink
-                      active={router.pathname === '/painel/adicionar-pais'}
-                    >
-                      adicionar pais
-                    </StyledLink>
-                  </Link>
-                </li>
-                <li>
                   <Link href="/painel/adicionar-indicador" passHref>
                     <StyledLink
                       active={router.pathname === '/painel/adicionar-indicador'}
