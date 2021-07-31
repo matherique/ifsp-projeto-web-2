@@ -10,6 +10,10 @@ export class PostgresUserRepository implements UserRepository {
     this.repository = connection.getRepository(UserSchema)
   }
 
+  async getAll(): Promise<User[]> {
+    return this.repository.find()
+  }
+
   async create(data: UserData): Promise<User> {
     return await this.repository.save(data)
   }
