@@ -7,7 +7,12 @@ export class PostgresUserRepository implements UserRepository {
   private repository: Repository<UserSchema>
 
   constructor(private readonly connection: Connection) {
-    this.repository = connection.getRepository(UserSchema)
+    this.repository = this.connection.getRepository(UserSchema)
+  }
+
+  async delete(id: string): Promise<boolean> {
+    const deleted = await this.repository.delete(id)
+    return deleted.affected === 1
   }
 
   async getAll(): Promise<User[]> {

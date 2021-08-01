@@ -8,6 +8,7 @@ export type UserData = {
 }
 
 export interface UserRepository {
+  delete(id: string): Promise<boolean>
   getAll(): Promise<User[]>
   create(data: UserData): Promise<User>
   findByEmail(email: string): Promise<User>
