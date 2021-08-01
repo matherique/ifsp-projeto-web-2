@@ -31,4 +31,12 @@ export default createGlobalStyle`
     background-color: var(--color-background);
     color: var(--color-text);
   }
+
+  .error {
+    color: var(--red);
+  }
+
+  .success {
+    color: var(--green);
+  }
 `

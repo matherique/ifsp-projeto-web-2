@@ -13,14 +13,6 @@ const Container = styled.div`
   .success {
     font-size: 18px;
   }
-
-  .error {
-    color: var(--red);
-  }
-
-  .success {
-    color: var(--green);
-  }
 `
 
 const api = createApiClient()

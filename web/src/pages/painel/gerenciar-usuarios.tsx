@@ -31,12 +31,18 @@ type GerenciarUsuariosProps = {
 
 const api = createApiClient()
 export default function GerenciarUsuarios({ users }: GerenciarUsuariosProps) {
+  const [success, setSuccess] = React.useState(false)
+  const [error, setError] = React.useState(false)
   function handleDeleteUser(id: string): void {
     api
       .delete(`/user/${id}`)
-      .then(() => alert('Usuário deletado com sucesso!'))
+      .then(() => {
+        setSuccess(true)
+        setError(false)
+      })
       .catch(() => {
-        alert('Erro ao deletar usuário')
+        setSuccess(false)
+        setError(true)
       })
   }
 
@@ -44,6 +50,8 @@ export default function GerenciarUsuarios({ users }: GerenciarUsuariosProps) {
     <Layout>
       <Container>
         <h2>Gerenciar Usuários</h2>
+        {success && <p className="success">Usuário deletado com sucesso!</p>}
+        {error && <p className="error">Ops, erro ao deletar usuário</p>}
         <table>
           <thead>
             <tr>
