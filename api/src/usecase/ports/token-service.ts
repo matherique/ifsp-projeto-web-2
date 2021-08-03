@@ -1,9 +1,9 @@
 export type TokenServiceValidateResponse<T> = {
-  data: T;
-};
+  data: T
+}
 
 export interface TokenService {
-  encode(payload: any, expiresIn: number): Promise<string>;
-  decode<T = any>(token: string): Promise<TokenServiceValidateResponse<T>>;
-  verify(token: string): Promise<boolean>;
+  encode(payload: any, expiresIn: number): Promise<string>
+  decode<T = string>(token: string): Promise<T>
+  verify(token: string): Promise<boolean>
 }

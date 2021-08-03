@@ -1,17 +1,19 @@
 import { Request, Response } from 'express'
 import { Controller } from '../../controllers/ports/controller'
+import { RequestWithUser } from '../middlewares/auth'
 
 export function adaptRoute(
   controller: Controller
 ): (req: Request, res: Response) => Promise<Response> {
-  return async (req: Request, res: Response) => {
+  return async (req: RequestWithUser, res: Response) => {
     const httpRequest = {
       body: {
         ...req.body,
         ...req.params,
         ...req.query
       },
-      file: req.file
+      file: req.file,
+      user: req.user
     }
 
     const httpResponse = await controller.handle(httpRequest)
