@@ -9,6 +9,9 @@ import {
 @Entity({ name: 'log' })
 export class LogSchema {
   @PrimaryGeneratedColumn('uuid')
+  public id
+
+  @Column({ type: 'varchar', length: 100 })
   public user_id
 
   @Column({ type: 'varchar', length: 100 })
