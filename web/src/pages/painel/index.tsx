@@ -6,8 +6,8 @@ import Layout from '@/components/layout'
 import { createApiClient } from '@/services/api'
 import { Country, Indicator } from '@/types'
 
-const api = createApiClient()
 export const getServerSideProps: GetServerSideProps = async context => {
+  const api = createApiClient(context)
   const countriesResponse = await api.get('/country')
   const indicatorResponse = await api.get('/indicator')
 

@@ -17,6 +17,7 @@ import Checkbox from '@/components/checkbox'
 import { Slider } from '@material-ui/core'
 import { Country, Indicator, IndicatorData } from '@/types'
 import { createApiClient } from '@/services/api'
+import { parseCookies } from 'nookies'
 
 const Container = styled.div`
   display: flex;
