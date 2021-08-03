@@ -1,4 +1,5 @@
 import { GetIndicatorDataUsecase } from '../domain/usecase/get-indicator-data'
+import { LogUserAction } from '../usecase/log-user-action'
 import {
   badRequest,
   Controller,
@@ -24,7 +25,8 @@ type Response = {
 
 export class GetIndicatorDataController implements Controller {
   constructor(
-    private readonly getIndicatorDataUsecase: GetIndicatorDataUsecase
+    private readonly getIndicatorDataUsecase: GetIndicatorDataUsecase,
+    private readonly logUserAction: LogUserAction
   ) {}
 
   async handle(
@@ -71,6 +73,12 @@ export class GetIndicatorDataController implements Controller {
         Object.assign(resp, { [indicator_id]: yearData })
       }
 
+      // TODO get user id from token
+      await this.logUserAction.handle({
+        user_id: '22279974b2-7078-4bdd-b2f4-96024c65605d', // HARDEDCODE ID FROM DESKTOP DATABASE
+        indicator_ids: indicators,
+        country_ids: countries
+      })
       return ok(resp)
     } catch (error) {
       console.error(error)
