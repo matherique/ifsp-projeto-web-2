@@ -1,5 +1,6 @@
 import { Connection, Repository } from 'typeorm'
 import { Indicator } from '../../domain/models/indicator'
+import { IndicatorReportData } from '../../domain/usecase/get-indicator-report'
 import { IndicatorRepository } from '../../usecase/ports'
 import { IndicatorSchema } from './schemas'
 
@@ -7,7 +8,10 @@ export class PostgresIndicatorRepository implements IndicatorRepository {
   private repository: Repository<IndicatorSchema>
 
   constructor(private readonly connection: Connection) {
-    this.repository = connection.getRepository(IndicatorSchema)
+    this.repository = this.connection.getRepository(IndicatorSchema)
+  }
+  async getReport(): Promise<IndicatorReportData[]> {
+    return this.repository.query('')
   }
 
   async findAll(): Promise<Indicator[]> {
