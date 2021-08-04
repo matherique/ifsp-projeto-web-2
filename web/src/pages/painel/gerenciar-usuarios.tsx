@@ -2,12 +2,10 @@ import * as React from 'react'
 import { GetServerSideProps } from 'next'
 
 import Layout from '@/components/layout'
-import { withAuth } from '@/services/auth'
 import styled from 'styled-components'
 import { Trash2 } from 'react-feather'
 import { User } from '@/types'
 import { createApiClient } from '@/services/api'
-import { apiResolver } from 'next/dist/next-server/server/api-utils'
 
 const Container = styled.div`
   width: 100%;
