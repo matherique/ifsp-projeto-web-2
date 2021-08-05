@@ -1,5 +1,6 @@
 import { Connection, Repository } from 'typeorm'
 import { Country } from '../../domain/models/country'
+import { CountryReportData } from '../../domain/usecase/get-country-report'
 import { CountryRepository } from '../../usecase/ports/country-repository'
 import { CountrySchema } from './schemas'
 
@@ -7,7 +8,13 @@ export class PostgresCountryRepository implements CountryRepository {
   private repository: Repository<CountrySchema>
 
   constructor(private readonly connection: Connection) {
-    this.repository = connection.getRepository(CountrySchema)
+    this.repository = this.connection.getRepository(CountrySchema)
+  }
+  async getReport(): Promise<CountryReportData[]> {
+    return this.repository.query(`select 
+    country.id, country.name, country.code, country.region, count(log.country_id) as views, country.created_at 
+    from "country" left join log on log.country_id = country.id::character varying group by log.country_id, country.id 
+    order by views desc, country.name asc`)
   }
 
   async findAll(): Promise<Country[]> {
