@@ -1,11 +1,12 @@
 import { Router } from 'express'
 import { Connection } from 'typeorm'
 import { adaptRoute } from '../adapter/express-router'
+import auth from '../middlewares/auth'
+import handleUpload from '../middlewares/file-upload'
 import makeAddIndicatorController from '../factories/add-indicator-controller'
 import makeGetAllIndicatorsController from '../factories/get-all-indicators-controller'
 import makeGetIndicatorDataController from '../factories/get-indicator-data-controller'
-import handleUpload from '../middlewares/file-upload'
-import auth from '../middlewares/auth'
+import makeGetIndicatorReportController from '../factories/get-indicator-report-controller'
 
 export default (router: Router, connection: Connection): void => {
   router.post(
@@ -23,5 +24,10 @@ export default (router: Router, connection: Connection): void => {
     '/indicator/filter',
     auth,
     adaptRoute(makeGetIndicatorDataController(connection))
+  )
+  router.get(
+    '/indicator/report',
+    auth,
+    adaptRoute(makeGetIndicatorReportController(connection))
   )
 }

@@ -7,6 +7,6 @@ import { IndicatorRepository } from './ports'
 export class GetIndicatorReport implements GetIndicatorReportUsecase {
   constructor(private readonly indicatorRepository: IndicatorRepository) {}
   async handle(): Promise<GetIndicatorReportResponse> {
-    return this.indicatorRepository.getReport()
+    return await this.indicatorRepository.getReport()
   }
 }

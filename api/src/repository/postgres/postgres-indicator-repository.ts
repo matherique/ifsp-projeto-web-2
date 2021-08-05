@@ -11,7 +11,10 @@ export class PostgresIndicatorRepository implements IndicatorRepository {
     this.repository = this.connection.getRepository(IndicatorSchema)
   }
   async getReport(): Promise<IndicatorReportData[]> {
-    return this.repository.query('')
+    return this.repository.query(`select 
+    indicator.id, indicator.name, indicator.code, indicator.note, indicator.source_organization, count(log.indicator_id) as views, indicator.created_at 
+    from "indicator" left join log on log.indicator_id = indicator.id::character varying group by log.indicator_id, indicator.id 
+    order by views desc, indicator.name asc`)
   }
 
   async findAll(): Promise<Indicator[]> {
