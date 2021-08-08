@@ -1,5 +1,6 @@
-import { Connection, Repository } from 'typeorm'
+import { Connection, Repository, useContainer } from 'typeorm'
 import { User } from '../../domain/models'
+import { UserReportData } from '../../domain/usecase/get-user-report'
 import { UserData, UserRepository } from '../../usecase/ports'
 import { UserSchema } from './schemas'
 
@@ -8,6 +9,17 @@ export class PostgresUserRepository implements UserRepository {
 
   constructor(private readonly connection: Connection) {
     this.repository = this.connection.getRepository(UserSchema)
+  }
+
+  async getReport(): Promise<UserReportData[]> {
+    const users = await this.repository.find()
+    return users.map(user => ({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      permission: user.getPermission(),
+      created_at: user.created_at.toUTCString()
+    }))
   }
 
   async delete(id: string): Promise<boolean> {

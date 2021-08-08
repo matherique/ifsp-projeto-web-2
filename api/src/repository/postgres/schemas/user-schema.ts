@@ -29,4 +29,17 @@ export class UserSchema {
 
   @UpdateDateColumn()
   public updated_at: Date
+
+  public getPermission() {
+    switch (this.permission) {
+      case UserPermission.ADMIN:
+        return 'Administrador'
+
+      case UserPermission.DEFAULT:
+        return 'Usuário'
+
+      default:
+        return 'Usuário'
+    }
+  }
 }
