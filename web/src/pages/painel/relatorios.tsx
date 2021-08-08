@@ -33,34 +33,6 @@ enum ReportType {
   INDICATOR = 'indicator'
 }
 
-type IndicatorReport = {
-  id: string
-  name: string
-  code: string
-  note: string
-  source_organization: string
-  views: number
-  created_at: string
-}
-
-type UserReport = {
-  id: string
-  name: string
-  email: string
-  permission: string
-  created_at: string
-  last_access: string
-}
-
-type CountryReport = {
-  id: string
-  name: string
-  code: string
-  region: string
-  views: number
-  created_at: string
-}
-
 type Report = {
   [key: string]: any
 }
@@ -92,8 +64,7 @@ export default function Relatorios() {
           { title: 'Nome', key: 'name' },
           { title: 'Email', key: 'email' },
           { title: 'Permissão', key: 'permission' },
-          { title: 'Data Criação', key: 'created_at' },
-          { title: 'Ultimo acesso', key: 'last_access' }
+          { title: 'Data Criação', key: 'created_at' }
         ]
       }
       case ReportType.COUNTRY: {
@@ -113,7 +84,6 @@ export default function Relatorios() {
 
   React.useEffect(() => {
     if (!currentReport) return
-
     api
       .get(getUrl(currentReport))
       .then(resp => {
@@ -154,7 +124,11 @@ export default function Relatorios() {
                 <tr key={report.id}>
                   <td>{i + 1}</td>
                   {theads.map(th => (
-                    <td key={th.key}>{report[th.key]}</td>
+                    <td key={th.key}>
+                      {th.key === 'created_at'
+                        ? new Date(report[th.key]).toLocaleString()
+                        : report[th.key]}
+                    </td>
                   ))}
                 </tr>
               ))}
