@@ -6,7 +6,7 @@ import handleUpload from '../middlewares/file-upload'
 import makeAddIndicatorController from '../factories/add-indicator-controller'
 import makeGetAllIndicatorsController from '../factories/get-all-indicators-controller'
 import makeGetIndicatorDataController from '../factories/get-indicator-data-controller'
-import makeGetIndicatorReportController from '../factories/get-indicator-report-controller'
+import makeGetIndicatorReportDataController from '../factories/get-indicator-report-data-controller'
 
 export default (router: Router, connection: Connection): void => {
   router.post(
@@ -28,6 +28,6 @@ export default (router: Router, connection: Connection): void => {
   router.get(
     '/indicator/report',
     auth,
-    adaptRoute(makeGetIndicatorReportController(connection))
+    adaptRoute(makeGetIndicatorReportDataController(connection))
   )
 }

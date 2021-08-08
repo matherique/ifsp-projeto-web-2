@@ -1,5 +1,5 @@
 import { Indicator } from '../../domain/models/indicator'
-import { IndicatorReportData } from '../../domain/usecase/get-indicator-report'
+import { IndicatorReportData } from '../../domain/usecase/get-indicator-report-data'
 
 type ReportData = IndicatorReportData
 

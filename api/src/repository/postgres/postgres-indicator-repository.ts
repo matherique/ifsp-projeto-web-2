@@ -1,6 +1,6 @@
 import { Connection, Repository } from 'typeorm'
 import { Indicator } from '../../domain/models/indicator'
-import { IndicatorReportData } from '../../domain/usecase/get-indicator-report'
+import { IndicatorReportData } from '../../domain/usecase/get-indicator-report-data'
 import { IndicatorRepository } from '../../usecase/ports'
 import { IndicatorSchema } from './schemas'
 
