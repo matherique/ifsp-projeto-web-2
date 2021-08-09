@@ -19,6 +19,10 @@ export function adaptRoute(
     const httpResponse = await controller.handle(httpRequest)
 
     if (httpResponse.status >= 200 && httpResponse.status <= 299) {
+      if (httpResponse.data instanceof Buffer) {
+        res.end(httpResponse.data)
+        return
+      }
       return res.status(httpResponse.status).json(httpResponse.data)
     }
 
