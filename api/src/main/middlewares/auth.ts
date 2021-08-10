@@ -7,7 +7,7 @@ import { UserPermission } from '../../domain/models'
 import { JWTAdapter } from '../../infra/cryptography/jwt-adapter'
 import { SECRET } from '../config/env'
 
-type TokenData = {
+export type TokenData = {
   id: string
   permission: UserPermission
 }
@@ -21,6 +21,7 @@ export default async function auth(
 ): Promise<void> {
   try {
     const token = request.headers['authorization']?.replace('Bearer ', '')
+
     if (!token) {
       const msg = badRequest('missing token')
       response

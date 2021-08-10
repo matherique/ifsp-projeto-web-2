@@ -75,10 +75,11 @@ export class GetIndicatorDataController implements Controller {
 
       // TODO get user id from token
       await this.logUserAction.handle({
-        user_id: '22279974b2-7078-4bdd-b2f4-96024c65605d', // HARDEDCODE ID FROM DESKTOP DATABASE
+        user_id: request.user?.id,
         indicator_ids: indicators,
         country_ids: countries
       })
+
       return ok(resp)
     } catch (error) {
       console.error(error)

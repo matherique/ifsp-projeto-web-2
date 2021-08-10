@@ -1,3 +1,5 @@
+import { TokenData } from '../../main/middlewares/auth'
+
 export type HttpRequest<T = any> = {
   body: T
   file: {
@@ -8,6 +10,7 @@ export type HttpRequest<T = any> = {
     buffer: Buffer
     size: number
   }
+  user?: TokenData
 }
 
 export type HttpResponse = {
