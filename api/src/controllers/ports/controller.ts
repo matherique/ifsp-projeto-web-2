@@ -1,4 +1,4 @@
-import { TokenData } from '../../main/middlewares/auth'
+import { TokenData } from '../../main/middlewares/authentication'
 
 export type HttpRequest<T = any> = {
   body: T

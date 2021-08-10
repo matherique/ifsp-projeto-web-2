@@ -9,31 +9,45 @@ import makeGetUserReportController from '../factories/get-user-report-controller
 import { makeRegisterUserController } from '../factories/register-user-controller'
 import { makeSignInController } from '../factories/sign-in-controller'
 import { makeUpdateUserController } from '../factories/update-user-controller'
-import auth from '../middlewares/auth'
+import authentication from '../middlewares/authentication'
+import authorization from '../middlewares/authorization'
 
 export default (router: Router, connection: Connection): void => {
   router.get(
     '/user/report',
-    auth,
+    authentication,
+    authorization,
     adaptRoute(makeGetUserReportController(connection))
   )
   router.get(
     '/user/report/print',
-    auth,
+    authentication,
+    authorization,
     adaptRoute(makeGenerateUserReportController(connection))
   )
-  router.get('/user', auth, adaptRoute(makeGetAllUsersController(connection)))
-  router.delete('/user', auth, adaptRoute(makeDeleteUserController(connection)))
-  router.post('/user', auth, adaptRoute(makeRegisterUserController(connection)))
+  router.get(
+    '/user',
+    authentication,
+    authorization,
+    adaptRoute(makeGetAllUsersController(connection))
+  )
+  router.delete(
+    '/user',
+    authentication,
+    authorization,
+    adaptRoute(makeDeleteUserController(connection))
+  )
+  router.post('/user', adaptRoute(makeRegisterUserController(connection)))
   router.put(
     '/user/:id',
-    auth,
+    authentication,
     adaptRoute(makeUpdateUserController(connection))
   )
   router.post('/user/login', adaptRoute(makeSignInController(connection)))
   router.get(
     '/user/:id',
-    auth,
+    authentication,
+    authorization,
     adaptRoute(makeGetUserInfoController(connection))
   )
 }

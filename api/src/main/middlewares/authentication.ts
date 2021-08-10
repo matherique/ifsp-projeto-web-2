@@ -14,7 +14,7 @@ export type TokenData = {
 
 export type RequestWithUser = { user?: TokenData } & Request
 
-export default async function auth(
+export default async function authentication(
   request: RequestWithUser,
   response: Response,
   next: NextFunction

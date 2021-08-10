@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { Controller } from '../../controllers/ports/controller'
-import { RequestWithUser } from '../middlewares/auth'
+import { RequestWithUser } from '../middlewares/authentication'
 
 export function adaptRoute(
   controller: Controller
