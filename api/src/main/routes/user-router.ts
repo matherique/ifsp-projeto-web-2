@@ -19,7 +19,7 @@ export default (router: Router, connection: Connection): void => {
   )
   router.get(
     '/user/report/print',
-    // auth,
+    auth,
     adaptRoute(makeGenerateUserReportController(connection))
   )
   router.get('/user', auth, adaptRoute(makeGetAllUsersController(connection)))
