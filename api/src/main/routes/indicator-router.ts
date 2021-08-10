@@ -7,6 +7,7 @@ import makeAddIndicatorController from '../factories/add-indicator-controller'
 import makeGetAllIndicatorsController from '../factories/get-all-indicators-controller'
 import makeGetIndicatorDataController from '../factories/get-indicator-data-controller'
 import makeGetIndicatorReportDataController from '../factories/get-indicator-report-data-controller'
+import { makeGenerateIndicatorReportController } from '../factories/generate-indicator-report-controller'
 
 export default (router: Router, connection: Connection): void => {
   router.post(
@@ -29,5 +30,10 @@ export default (router: Router, connection: Connection): void => {
     '/indicator/report',
     auth,
     adaptRoute(makeGetIndicatorReportDataController(connection))
+  )
+  router.get(
+    '/indicator/report/print',
+    auth,
+    adaptRoute(makeGenerateIndicatorReportController(connection))
   )
 }
