@@ -1,6 +1,6 @@
 import { Connection, Repository, useContainer } from 'typeorm'
 import { User } from '../../domain/models'
-import { UserReportData } from '../../domain/usecase/get-user-report'
+import { UserReportData } from '../../domain/usecase/get-user-report-data'
 import { UserData, UserRepository } from '../../usecase/ports'
 import { UserSchema } from './schemas'
 

@@ -1,4 +1,4 @@
-import { UserReportData } from './get-user-report'
+import { UserReportData } from './get-user-report-data'
 
 export type GenerateUserReportParams = UserReportData[]
 

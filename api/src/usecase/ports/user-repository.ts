@@ -1,5 +1,5 @@
 import { User, UserPermission } from '../../domain/models'
-import { UserReportData } from '../../domain/usecase/get-user-report'
+import { UserReportData } from '../../domain/usecase/get-user-report-data'
 
 export type UserData = {
   name: string

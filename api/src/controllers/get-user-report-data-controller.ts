@@ -1,4 +1,4 @@
-import { GetUserReportUsecase } from '../domain/usecase/get-user-report'
+import { GetUserReportDataUsecase } from '../domain/usecase/get-user-report-data'
 import {
   Controller,
   HttpRequest,
@@ -7,8 +7,10 @@ import {
   ok
 } from './ports/controller'
 
-export class GetUserReportController implements Controller {
-  constructor(private readonly getUserReportUsecase: GetUserReportUsecase) {}
+export class GetUserReportDataController implements Controller {
+  constructor(
+    private readonly getUserReportUsecase: GetUserReportDataUsecase
+  ) {}
 
   async handle(_: HttpRequest): Promise<HttpResponse> {
     try {

@@ -5,7 +5,7 @@ import makeDeleteUserController from '../factories/delete-user-controller'
 import { makeGenerateUserReportController } from '../factories/generate-user-report-controller'
 import makeGetAllUsersController from '../factories/get-all-users-controller'
 import { makeGetUserInfoController } from '../factories/get-user-info-controller'
-import makeGetUserReportController from '../factories/get-user-report-controller'
+import makeGetUserReportDataController from '../factories/get-user-report-data-controller'
 import { makeRegisterUserController } from '../factories/register-user-controller'
 import { makeSignInController } from '../factories/sign-in-controller'
 import { makeUpdateUserController } from '../factories/update-user-controller'
@@ -17,7 +17,7 @@ export default (router: Router, connection: Connection): void => {
     '/user/report',
     authentication,
     authorization,
-    adaptRoute(makeGetUserReportController(connection))
+    adaptRoute(makeGetUserReportDataController(connection))
   )
   router.get(
     '/user/report/print',
