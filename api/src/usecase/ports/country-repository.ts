@@ -1,5 +1,5 @@
 import { Country } from '../../domain/models/country'
-import { CountryReportData } from '../../domain/usecase/get-country-report'
+import { CountryReportData } from '../../domain/usecase/get-country-report-data'
 
 type ReportData = CountryReportData
 

@@ -1,6 +1,6 @@
 import { Connection, Repository } from 'typeorm'
 import { Country } from '../../domain/models/country'
-import { CountryReportData } from '../../domain/usecase/get-country-report'
+import { CountryReportData } from '../../domain/usecase/get-country-report-data'
 import { CountryRepository } from '../../usecase/ports/country-repository'
 import { CountrySchema } from './schemas'
 

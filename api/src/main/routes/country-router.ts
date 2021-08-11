@@ -3,7 +3,7 @@ import { Connection } from 'typeorm'
 import { adaptRoute } from '../adapter/express-router'
 import { makeGenerateCountryReportController } from '../factories/generate-country-report-controller'
 import makeGetAllCountriesController from '../factories/get-all-countries-controller'
-import makeGetCountryReportController from '../factories/get-country-report-controller'
+import makeGetCountryReportDataController from '../factories/get-country-report-data-controller'
 import authentication from '../middlewares/authentication'
 import authorization from '../middlewares/authorization'
 
@@ -17,7 +17,7 @@ export default (router: Router, connection: Connection): void => {
     '/country/report',
     authentication,
     authorization,
-    adaptRoute(makeGetCountryReportController(connection))
+    adaptRoute(makeGetCountryReportDataController(connection))
   )
   router.get(
     '/country/report/print',

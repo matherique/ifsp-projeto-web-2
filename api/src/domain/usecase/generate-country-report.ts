@@ -1,4 +1,4 @@
-import { CountryReportData } from './get-country-report'
+import { CountryReportData } from './get-country-report-data'
 
 export type GenerateCountryReportParams = CountryReportData[]
 

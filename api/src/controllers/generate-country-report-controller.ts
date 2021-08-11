@@ -1,5 +1,5 @@
 import { GenerateCountryReport } from '../usecase/generate-country-report'
-import { GetCountryReport } from '../usecase/get-country-report'
+import { GetCountryReportData } from '../usecase/get-country-report-data'
 import {
   Controller,
   HttpRequest,
@@ -10,7 +10,7 @@ import {
 
 export class GenerateCountryReportController implements Controller {
   constructor(
-    private readonly getCountryReportData: GetCountryReport,
+    private readonly getCountryReportData: GetCountryReportData,
     private readonly generateCountryReport: GenerateCountryReport
   ) {}
 
