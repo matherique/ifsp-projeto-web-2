@@ -55,6 +55,7 @@ let g:go_fmt_command = "goimports"
 set spelllang=pt_br
 "set viminfo='20,<1000,s1000'
 
+set updatetime=10
 
 highlight CursorLine term=bold cterm=bold guibg=Grey40
 
@@ -112,7 +113,7 @@ endfunction
 let g:go_highlight_types = 0
 
 
-let g:coc_global_extensions = [ "coc-eslint", "coc-marketplace", "coc-tsserver", "coc-clangd", "coc-css", "coc-go", "coc-json"]
+let g:coc_global_extensions = [ "coc-marketplace", "coc-tsserver", "coc-clangd", "coc-css", "coc-go", "coc-json"]
 
 " use <c-space>for trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
