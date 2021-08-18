@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import Layout from '@/components/layout'
 import Button from '@/components/button'
 import { createApiClient } from '@/services/api'
+import Link from 'next/link'
+import { Router, useRouter } from 'next/router'
 
 const Container = styled.div`
   width: 100%;
@@ -27,6 +29,11 @@ const ReportList = styled.div`
   justify-content: space-evenly;
 `
 
+const ActionButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
 enum ReportType {
   USER = 'user',
   COUNTRY = 'country',
@@ -40,12 +47,15 @@ type Report = {
 const api = createApiClient()
 
 export default function Relatorios() {
+  const router = useRouter()
   const [currentReport, setCurrentReport] = React.useState<
     ReportType | undefined
   >()
   const [reports, setReports] = React.useState<Report[]>([])
 
-  const getUrl = (currRep: ReportType) => `${currRep}/report`
+  const getUrlReportData = (currRep: ReportType) => `${currRep}/report`
+  const getUrlReportPrint = (currRep: ReportType) =>
+    `http://localhost:3333/api/${currRep}/report/print`
 
   const theads = React.useMemo(() => {
     switch (currentReport) {
@@ -85,7 +95,7 @@ export default function Relatorios() {
   React.useEffect(() => {
     if (!currentReport) return
     api
-      .get(getUrl(currentReport))
+      .get(getUrlReportData(currentReport))
       .then(resp => {
         setReports(resp.data)
       })
@@ -94,21 +104,40 @@ export default function Relatorios() {
       })
   }, [currentReport])
 
+  function handlePrintReport() {
+    if (!currentReport) return
+    api
+      .get(getUrlReportPrint(currentReport), { responseType: 'blob' })
+      .then(resp => {
+        const file = new Blob([resp.data], { type: 'application/pdf' })
+        const fileURL = URL.createObjectURL(file)
+        window.open(fileURL)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
   return (
     <Layout>
       <Container>
         <h2>Relatórios</h2>
-        <ReportList>
-          <Button onClick={() => setCurrentReport(ReportType.USER)}>
-            Usuários
+        <ActionButtons>
+          <ReportList>
+            <Button onClick={() => setCurrentReport(ReportType.USER)}>
+              Usuários
+            </Button>
+            <Button onClick={() => setCurrentReport(ReportType.COUNTRY)}>
+              Paises
+            </Button>
+            <Button onClick={() => setCurrentReport(ReportType.INDICATOR)}>
+              Indicatores
+            </Button>
+          </ReportList>
+          <Button disabled={!currentReport} onClick={() => handlePrintReport()}>
+            Imprimir relatório atual
           </Button>
-          <Button onClick={() => setCurrentReport(ReportType.COUNTRY)}>
-            Paises
-          </Button>
-          <Button onClick={() => setCurrentReport(ReportType.INDICATOR)}>
-            Indicatores
-          </Button>
-        </ReportList>
+        </ActionButtons>
         {!!currentReport ? (
           <table>
             <thead>
