@@ -1,0 +1,35 @@
+#!/usr/bin/bash
+
+TOKEN=""
+
+login() {
+  curl -sX POST http://localhost:3333/api/user/login -d "email=admin@admin.com&password=123" 
+}
+
+list() {
+  curl -sX GET http://localhost:3333/api/indicator/ --header "Authorization: ${TOKEN}" | jq
+}
+
+create() {
+  echo "file=@$1"
+  curl --header "Authorization: Bearer ${TOKEN}" \
+    -F "file=@$1" \
+    -X POST http://localhost:3333/api/indicator/ | jq
+}
+
+if [ "$1" = "list" ]; then
+  shift
+  list
+fi
+
+if [ "$1" = "create" ]; then
+  shift
+  create $1
+fi
+
+if [ "$1" = "login" ]; then
+  shift
+  login
+fi
+
+
