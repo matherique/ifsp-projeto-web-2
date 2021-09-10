@@ -2,7 +2,7 @@
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 
-> API do projeto da disciplina de WEB2 do curso de TDAS
+> API do projeto da disciplina de WEB2 do curso de TDAS utilizando Clean Architecture e conceitos de SOLID
 
 ## Install
 
